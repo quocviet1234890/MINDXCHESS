@@ -1,0 +1,302 @@
+body {
+    background-color: #2f2f2f;
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 160px;
+    height: 100vh;
+    background-color: #000000;
+    border-right: 1px solid #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 12px 0 0 12px;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.pawn-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 4px;
+}
+
+.logo-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.play-option, .quiz-option, .learn-option, .watch-option, .news-option, .social-option, .more-option {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 5px;
+    width: 135px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.hand-icon, .quiz-icon, .learn-icon, .binoculars-icon, .news-icon, .social-icon, .more-icon {
+    width: 24px;
+    margin-right: 8px;
+}
+
+.play-text, .quiz-text, .learn-text, .binoculars-text, .news-text, .social-text, .more-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 4px 8px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.play-text:hover, .quiz-text:hover, .learn-text:hover, .binoculars-text:hover, .news-text:hover, .social-text:hover, .more-text:hover {
+    background-color: #444444;
+    border-radius: 8px;
+}
+
+/* Sub-sidebar */
+.sub-sidebar {
+    display: none;
+    position: fixed;
+    left: 160px;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #000000;
+    border: 1px solid #333333;
+    border-radius: 0 8px 8px 0;
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.play-option:hover .sub-sidebar, .news-option:hover .sub-sidebar {
+    display: block;
+}
+
+.sub-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.top-players-icon, .leaderboard-icon {
+    width: 24px;
+    margin-right: 8px;
+}
+
+.top-players-text, .leaderboard-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 4px 8px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.top-players-text:hover, .leaderboard-text:hover {
+    background-color: #444444;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Các phần khác của sidebar */
+.search-option {
+    margin-top: 20px;
+    width: 135px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 6px;
+    padding: 6px 8px;
+    width: 100%;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.search-container:hover {
+    background-color: #444;
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    opacity: 0.7;
+    border-radius: 50%;
+}
+
+.search-input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    padding: 2px 0;
+    box-sizing: border-box;
+}
+
+.search-input::placeholder {
+    color: #aaa;
+    font-weight: 400;
+}
+
+.signup-option {
+    margin-top: 20px;
+    width: 135px;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #d68b00;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.signup-btn:hover {
+    background-color: #e89c00;
+}
+
+.login-option {
+    margin-top: 20px;
+    width: 135px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #666666;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.login-btn:hover {
+    background-color: #777777;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    width: 135px;
+    box-sizing: border-box;
+}
+
+.support-option {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    width: 135px;
+    box-sizing: border-box;
+}
+
+.language-icon, .support-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+}
+
+.language-text, .support-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #cccccc;
+    font-weight: 400;
+    padding: 4px 8px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.language-text:hover, .support-text:hover {
+    background-color: #444444;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Nội dung trang (áp dụng cho cả index.html và leaderboard.html) */
+.content {
+    flex: 1;
+    padding: 40px 60px; /* Giữ khoảng cách giống Chess.com */
+    background-color: #2f2f2f; /* Phần xám của trang */
+    color: #ffffff;
+    margin-left: 0; /* Đảm bảo không có margin làm ảnh hưởng khoảng cách */
+}
+
+.leaderboard-header {
+    display: flex;
+    align-items: center;
+}
+
+.leaderboard-link {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Áp dụng khoảng cách 16px trực tiếp giữa icon và chữ, giống Chess.com */
+    text-decoration: none; /* Bỏ gạch chân mặc định của link */
+    color: #ffffff; /* Màu chữ trắng giống Chess.com */
+}
+
+.leaderboard-link:hover {
+    cursor: pointer; /* Con trỏ chuột khi hover */
+    color: #baca44; /* Màu sáng lên khi hover, giống hiệu ứng Chess.com */
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px; /* Kích thước giống Chess.com */
+    font-weight: 700; /* Đậm giống Chess.com */
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 0.5px; /* Khoảng cách chữ nhẹ */
+}
+
+.header-icon {
+    width: 28px; /* Kích thước cân đối với chữ */
+    height: 28px;
+    order: -1; /* Đặt icon trước chữ trong flex */
+}
