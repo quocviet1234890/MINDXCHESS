@@ -77,11 +77,79 @@
         </div>
     </div>
     <div class="content">
-        <div class="leaderboard-header">
-            <a href="leaderboard.html" class="leaderboard-link">
-                <img src="img_leaderboard.jpg" alt="Leaderboard icon" class="header-icon">
-                <h1>Leaderboard</h1>
-            </a>
+        <div class="leaderboard-container">
+            <div class="leaderboard-sidebar">
+                <div class="leaderboard-header">
+                    <img src="https://www.chess.com/bundles/web/images/color-icons/leaderboard.svg" alt="Leaderboard Icon" class="header-icon">
+                    <h1>Leaderboards</h1>
+                </div>
+                <ul class="category-list">
+                    <li class="category-item" data-type="live_bullet">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/bullet.svg" alt="Bullet Icon" class="category-icon">
+                        Bullet
+                    </li>
+                    <li class="category-item active" data-type="live_blitz">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/blitz.svg" alt="Blitz Icon" class="category-icon">
+                        Blitz
+                    </li>
+                    <li class="category-item" data-type="live_rapid">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/rapid.svg" alt="Rapid Icon" class="category-icon">
+                        Rapid
+                    </li>
+                    <li class="category-item" data-type="live_standard">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149456.png" alt="Classical Icon" class="category-icon">
+                        Classical
+                    </li>
+                    <li class="category-item" data-type="daily">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/daily.svg" alt="Daily Icon" class="category-icon">
+                        Daily
+                    </li>
+                    <li class="category-item" data-type="tactics">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/puzzles.svg" alt="Puzzle Icon" class="category-icon">
+                        Puzzle
+                    </li>
+                    <li class="category-item" data-type="rush">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/rush.svg" alt="Puzzle Rush Icon" class="category-icon">
+                        Puzzle Rush
+                    </li>
+                    <li class="category-item" data-type="battle">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/battle.svg" alt="Puzzle Battle Icon" class="category-icon">
+                        Puzzle Battle
+                    </li>
+                    <li class="category-item" data-type="live_960">
+                        <img src="https://www.chess.com/bundles/web/images/color-icons/960.svg" alt="Chess960 Icon" class="category-icon">
+                        Chess960
+                    </li>
+                    <li class="category-item" data-type="daily_960">
+                        <img src="https://cdn-icons-png.flaticon.com/512/876/876589.png" alt="Daily 960 Icon" class="category-icon">
+                        Daily 960
+                    </li>
+                    <li class="category-item" data-type="3check">
+                        <img src="https://cdn-icons-png.flaticon.com/512/876/876590.png" alt="3 Check Icon" class="category-icon">
+                        3 Check
+                    </li>
+                    <li class="category-item" data-type="kingofthehill">
+                        <img src="https://cdn-icons-png.flaticon.com/512/876/876591.png" alt="King of the Hill Icon" class="category-icon">
+                        King of the Hill
+                    </li>
+                </ul>
+            </div>
+            <div class="leaderboard-main">
+                <div class="leaderboard-table">
+                    <table id="blitz-leaderboard">
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th class="name">Player</th>
+                                <th class="rating">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <h2 class="leaderboard-title">Blitz Leaderboard</h2>
+                    <button id="view-full-btn" class="view-full-btn">View Full Leaderboard</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

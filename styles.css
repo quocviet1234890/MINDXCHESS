@@ -295,6 +295,151 @@ h1 {
     letter-spacing: 0.5px; /* Khoảng cách chữ nhẹ */
 }
 
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #b0b8b4;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.category-item:hover {
+    background-color: #354540;
+    color: #ffffff;
+}
+
+.category-item.active {
+    background-color: #baca44;
+    color: #1b2623;
+    font-weight: 700;
+}
+
+.category-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.leaderboard-main {
+    flex: 1;
+    max-width: 700px; /* Chess.com dùng khoảng 700px cho bảng */
+}
+
+.leaderboard-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 20px 0; /* Tăng margin-bottom để không chèn bảng */
+    line-height: 1.2; /* Đảm bảo không bị ép sát */
+}
+
+.leaderboard-table {
+    width: 100%;
+    position: relative; /* Đảm bảo bảng không đè lên tiêu đề */
+}
+
+#blitz-leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1b2623; /* Màu nền bảng giống Chess.com */
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#blitz-leaderboard th, #blitz-leaderboard td {
+    padding: 10px 12px; /* Padding giống Chess.com */
+    text-align: left;
+    border-bottom: 1px solid #2e3b37; /* Viền giống Chess.com */
+}
+
+#blitz-leaderboard th {
+    background-color: #2e3b37; /* Màu header giống Chess.com */
+    font-size: 13px; /* Font size giống Chess.com */
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #b0b8b4; /* Màu chữ header */
+}
+
+#blitz-leaderboard td {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+#blitz-leaderboard tr:nth-child(even) {
+    background-color: #212e2a; /* Màu xen kẽ giống Chess.com */
+}
+
+#blitz-leaderboard tr:hover {
+    background-color: #354540; /* Hover giống Chess.com */
+}
+
+#blitz-leaderboard .rank {
+    width: 40px; /* Chess.com: khoảng 40px */
+    text-align: center;
+}
+
+#blitz-leaderboard .name {
+    width: 60%; /* Chess.com: tên chiếm phần lớn */
+}
+
+#blitz-leaderboard .rating {
+    width: 40%; /* Chess.com: rating nhỏ hơn */
+    text-align: center;
+}
+
+#blitz-leaderboard .player-name {
+    display: flex;
+    align-items: center;
+}
+
+#blitz-leaderboard .player-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+#blitz-leaderboard .flair-icon {
+    width: 16px; /* Chess.com dùng 16px cho flair */
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.view-full-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 10px;
+    background-color: #baca44; /* Màu nút giống Chess.com */
+    border: none;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1b2623;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.view-full-btn:hover {
+    background-color: #c7d55a;
+}
+
 .header-icon {
     width: 28px; /* Kích thước cân đối với chữ */
     height: 28px;
