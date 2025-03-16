@@ -18,7 +18,10 @@ body {
     padding-top: 10px;
     padding-left: 10px;
     border-radius: 12px 0 0 12px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
 }
 
 .logo {
@@ -73,7 +76,6 @@ body {
     border-radius: 8px;
 }
 
-/* Sub-sidebar */
 .sub-sidebar {
     display: none;
     position: fixed;
@@ -121,7 +123,6 @@ body {
     border-radius: 8px;
 }
 
-/* Các phần khác của sidebar */
 .search-option {
     margin-top: 20px;
     width: 135px;
@@ -147,7 +148,6 @@ body {
     height: 18px;
     margin-right: 6px;
     opacity: 0.7;
-    border-radius: 50%;
 }
 
 .search-input {
@@ -259,40 +259,47 @@ body {
     border-radius: 8px;
 }
 
-/* Nội dung trang (áp dụng cho cả index.html và leaderboard.html) */
 .content {
     flex: 1;
-    padding: 40px 60px; /* Giữ khoảng cách giống Chess.com */
-    background-color: #2f2f2f; /* Phần xám của trang */
+    padding: 40px 60px;
+    background-color: #2f2f2f;
     color: #ffffff;
-    margin-left: 0; /* Đảm bảo không có margin làm ảnh hưởng khoảng cách */
+    margin-left: 160px;
+    overflow-x: hidden;
+}
+
+.leaderboard-container {
+    display: flex;
+    gap: 60px;
+    max-width: 100%;
+}
+
+.leaderboard-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .leaderboard-header {
     display: flex;
     align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.leaderboard-link {
-    display: flex;
-    align-items: center;
-    gap: 16px; /* Áp dụng khoảng cách 16px trực tiếp giữa icon và chữ, giống Chess.com */
-    text-decoration: none; /* Bỏ gạch chân mặc định của link */
-    color: #ffffff; /* Màu chữ trắng giống Chess.com */
-}
-
-.leaderboard-link:hover {
-    cursor: pointer; /* Con trỏ chuột khi hover */
-    color: #baca44; /* Màu sáng lên khi hover, giống hiệu ứng Chess.com */
+.header-icon {
+    width: 28px;
+    height: 28px;
 }
 
 h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: 32px; /* Kích thước giống Chess.com */
-    font-weight: 700; /* Đậm giống Chess.com */
+    font-size: 32px;
+    font-weight: 700;
     margin: 0;
     color: #ffffff;
-    letter-spacing: 0.5px; /* Khoảng cách chữ nhẹ */
+    letter-spacing: 0.5px;
 }
 
 .category-list {
@@ -331,117 +338,126 @@ h1 {
 
 .leaderboard-main {
     flex: 1;
-    max-width: 700px; /* Chess.com dùng khoảng 700px cho bảng */
-}
-
-.leaderboard-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 20px 0; /* Tăng margin-bottom để không chèn bảng */
-    line-height: 1.2; /* Đảm bảo không bị ép sát */
+    max-width: 700px;
+    margin-left: 0;
 }
 
 .leaderboard-table {
     width: 100%;
-    position: relative; /* Đảm bảo bảng không đè lên tiêu đề */
+    position: relative;
+    background-color: #1e2a27;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
-#blitz-leaderboard {
+#leaderboard-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #1b2623; /* Màu nền bảng giống Chess.com */
-    border-radius: 5px;
+    background-color: transparent;
     font-family: 'Roboto', sans-serif;
     color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-#blitz-leaderboard th, #blitz-leaderboard td {
-    padding: 10px 12px; /* Padding giống Chess.com */
+#leaderboard-table th, #leaderboard-table td {
+    padding: 14px 16px;
     text-align: left;
-    border-bottom: 1px solid #2e3b37; /* Viền giống Chess.com */
+    border-bottom: 1px solid #33403d;
 }
 
-#blitz-leaderboard th {
-    background-color: #2e3b37; /* Màu header giống Chess.com */
-    font-size: 13px; /* Font size giống Chess.com */
+#leaderboard-table .category-title th {
+    background-color: #2c3a36;
+    font-size: 24px;
     font-weight: 700;
-    text-transform: uppercase;
-    color: #b0b8b4; /* Màu chữ header */
-}
-
-#blitz-leaderboard td {
-    font-size: 14px;
-    font-weight: 400;
     color: #ffffff;
-}
-
-#blitz-leaderboard tr:nth-child(even) {
-    background-color: #212e2a; /* Màu xen kẽ giống Chess.com */
-}
-
-#blitz-leaderboard tr:hover {
-    background-color: #354540; /* Hover giống Chess.com */
-}
-
-#blitz-leaderboard .rank {
-    width: 40px; /* Chess.com: khoảng 40px */
     text-align: center;
+    padding: 20px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #baca44;
 }
 
-#blitz-leaderboard .name {
-    width: 60%; /* Chess.com: tên chiếm phần lớn */
+#leaderboard-table th {
+    background-color: #2c3a36;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #d1d5db;
+    letter-spacing: 0.5px;
 }
 
-#blitz-leaderboard .rating {
-    width: 40%; /* Chess.com: rating nhỏ hơn */
+#leaderboard-table td {
+    font-size: 15px;
+    font-weight: 400;
+    color: #e5e7eb;
+}
+
+#leaderboard-table tr {
+    transition: background-color 0.2s ease;
+}
+
+#leaderboard-table tr:nth-child(even) {
+    background-color: #232f2c;
+}
+
+#leaderboard-table tr:hover {
+    background-color: #3b4b46;
+}
+
+#leaderboard-table .rank {
+    width: 40px;
     text-align: center;
+    font-weight: 600;
+    color: #baca44;
 }
 
-#blitz-leaderboard .player-name {
+#leaderboard-table .name {
+    width: 60%;
+}
+
+#leaderboard-table .rating {
+    width: 40%;
+    text-align: center;
+    font-weight: 500;
+    color: #f3c678;
+}
+
+#leaderboard-table .player-name {
     display: flex;
     align-items: center;
 }
 
-#blitz-leaderboard .player-avatar {
-    width: 24px;
-    height: 24px;
+#leaderboard-table .player-avatar {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    margin-right: 8px;
-}
-
-#blitz-leaderboard .flair-icon {
-    width: 16px; /* Chess.com dùng 16px cho flair */
-    height: 16px;
-    vertical-align: middle;
-    margin-left: 4px;
+    margin-right: 10px;
+    border: 2px solid #baca44;
+    box-shadow: 0 0 4px rgba(186, 202, 68, 0.5);
 }
 
 .view-full-btn {
     display: block;
     width: 100%;
-    padding: 12px 0;
-    margin-top: 10px;
-    background-color: #baca44; /* Màu nút giống Chess.com */
+    padding: 14px 0;
+    margin-top: 15px;
+    background-color: #baca44;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: #1b2623;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e2a27;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .view-full-btn:hover {
-    background-color: #c7d55a;
+    background-color: #d4de6a;
+    transform: translateY(-2px);
 }
 
-.header-icon {
-    width: 28px; /* Kích thước cân đối với chữ */
-    height: 28px;
-    order: -1; /* Đặt icon trước chữ trong flex */
+.view-full-btn:active {
+    transform: translateY(0);
 }
