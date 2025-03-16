@@ -1,58 +1,66 @@
-const tableBody = document.querySelector('#leaderboard-table tbody');
-const viewFullBtn = document.getElementById('view-full-btn');
+// Lấy các phần tử DOM cần thiết
 const categoryItems = document.querySelectorAll('.category-item');
-const categoryTitle = document.querySelector('#leaderboard-table .category-title th');
-let isFullView = false;
-let currentCategory = 'live_blitz';
+const leaderboardTable = document.getElementById('leaderboard-table');
+const tbody = leaderboardTable.querySelector('tbody');
+const categoryTitle = leaderboardTable.querySelector('.category-title th');
 
-function loadLeaderboard(category, limit) {
-    fetch('https://api.chess.com/pub/leaderboards')
-        .then(response => response.json())
-        .then(data => {
-            const categoryData = data[category] || [];
-            const slicedData = categoryData.slice(0, limit);
-            tableBody.innerHTML = '';
-            slicedData.forEach(player => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="rank">${player.rank}</td>
-                    <td class="name">
-                        <div class="player-name">
-                            ${player.avatar ? `<img src="${player.avatar}" alt="Avatar" class="player-avatar">` : ''}
-                            <span>${player.username}</span>
-                        </div>
-                    </td>
-                    <td class="rating">${player.score}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-            const categoryName = category.replace('live_', '').replace('daily_', '').replace('tactics', 'Puzzle').replace('rush', 'Puzzle Rush').replace('battle', 'Puzzle Battle').replace('3check', '3 Check').replace('kingofthehill', 'King of the Hill');
-            categoryTitle.textContent = `${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)} Leaderboard`;
-        })
-        .catch(error => console.error('Error fetching leaderboard:', error));
+// API endpoint
+const API_URL = 'https://api.chess.com/pub/leaderboards';
+
+// Hàm lấy dữ liệu từ API và hiển thị
+async function fetchLeaderboard(category) {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+
+        // Lấy dữ liệu từ category tương ứng (ví dụ: live_blitz, live_bullet, v.v.)
+        const players = data[category] || [];
+        
+        // Xóa dữ liệu cũ trong bảng
+        tbody.innerHTML = '';
+
+        // Cập nhật tiêu đề bảng
+        categoryTitle.textContent = `${category.replace('live_', '').replace('daily_', '').replace('_', ' ').toUpperCase()} Leaderboard`;
+
+        // Hiển thị tối đa 10 người chơi (giống chess.com)
+        players.slice(0, 10).forEach((player, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="rank">${index + 1}</td>
+                <td class="name">
+                    <div class="player-name">
+                        <img src="${player.avatar || 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png'}" alt="Avatar" class="player-avatar">
+                        ${player.username}
+                    </div>
+                </td>
+                <td class="rating">${player.score}</td>
+                <td class="won">${player.win_count}</td>
+                <td class="draw">${player.draw_count}</td>
+                <td class="lost">${player.loss_count}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Error fetching leaderboard:', error);
+        tbody.innerHTML = '<tr><td colspan="6">Error loading leaderboard</td></tr>';
+    }
 }
 
-loadLeaderboard(currentCategory, 10);
-
+// Xử lý sự kiện khi chọn category
 categoryItems.forEach(item => {
-    item.addEventListener('click', function() {
+    item.addEventListener('click', () => {
+        // Xóa class 'active' khỏi tất cả các item
         categoryItems.forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-        currentCategory = this.getAttribute('data-type');
-        isFullView = false;
-        viewFullBtn.textContent = 'View Full Leaderboard';
-        loadLeaderboard(currentCategory, 10);
+        // Thêm class 'active' cho item được chọn
+        item.classList.add('active');
+
+        // Lấy loại category từ data-type
+        const category = item.getAttribute('data-type');
+        fetchLeaderboard(category);
     });
 });
 
-viewFullBtn.addEventListener('click', function() {
-    if (!isFullView) {
-        loadLeaderboard(currentCategory, 50);
-        viewFullBtn.textContent = 'View Top 10';
-        isFullView = true;
-    } else {
-        loadLeaderboard(currentCategory, 10);
-        viewFullBtn.textContent = 'View Full Leaderboard';
-        isFullView = false;
-    }
+// Tải leaderboard mặc định (Blitz) khi trang được tải
+document.addEventListener('DOMContentLoaded', () => {
+    fetchLeaderboard('live_blitz');
 });

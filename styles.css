@@ -58,6 +58,7 @@ body {
 
 .hand-icon, .quiz-icon, .learn-icon, .binoculars-icon, .news-icon, .social-icon, .more-icon {
     width: 24px;
+    height: 24px;
     margin-right: 8px;
 }
 
@@ -103,6 +104,7 @@ body {
 
 .top-players-icon, .leaderboard-icon {
     width: 24px;
+    height: 24px;
     margin-right: 8px;
 }
 
@@ -411,14 +413,35 @@ h1 {
 }
 
 #leaderboard-table .name {
-    width: 60%;
+    width: 40%;
 }
 
 #leaderboard-table .rating {
-    width: 40%;
+    width: 20%;
     text-align: center;
     font-weight: 500;
     color: #f3c678;
+}
+
+#leaderboard-table .won {
+    width: 15%;
+    text-align: center;
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+#leaderboard-table .draw {
+    width: 15%;
+    text-align: center;
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+#leaderboard-table .lost {
+    width: 15%;
+    text-align: center;
+    font-weight: 500;
+    color: #e5e7eb;
 }
 
 #leaderboard-table .player-name {
