@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MINDX CHESS - Leaderboard</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon_io.zip" type="image/x-icon">
 </head>
 <body>
@@ -96,10 +96,6 @@
                         <img src="https://www.chess.com/bundles/web/images/color-icons/rapid.svg" alt="Rapid Icon" class="category-icon">
                         Rapid
                     </li>
-                    <li class="category-item" data-type="live_standard">
-                        <img src="https://cdn-icons-png.flaticon.com/512/149/149456.png" alt="Classical Icon" class="category-icon">
-                        Classical
-                    </li>
                     <li class="category-item" data-type="daily">
                         <img src="https://www.chess.com/bundles/web/images/color-icons/daily.svg" alt="Daily Icon" class="category-icon">
                         Daily
@@ -115,22 +111,6 @@
                     <li class="category-item" data-type="battle">
                         <img src="https://www.chess.com/bundles/web/images/color-icons/battle.svg" alt="Puzzle Battle Icon" class="category-icon">
                         Puzzle Battle
-                    </li>
-                    <li class="category-item" data-type="live_960">
-                        <img src="https://www.chess.com/bundles/web/images/color-icons/960.svg" alt="Chess960 Icon" class="category-icon">
-                        Chess960
-                    </li>
-                    <li class="category-item" data-type="daily_960">
-                        <img src="https://cdn-icons-png.flaticon.com/512/876/876589.png" alt="Daily 960 Icon" class="category-icon">
-                        Daily 960
-                    </li>
-                    <li class="category-item" data-type="3check">
-                        <img src="https://cdn-icons-png.flaticon.com/512/876/876590.png" alt="3 Check Icon" class="category-icon">
-                        3 Check
-                    </li>
-                    <li class="category-item" data-type="kingofthehill">
-                        <img src="https://cdn-icons-png.flaticon.com/512/876/876591.png" alt="King of the Hill Icon" class="category-icon">
-                        King of the Hill
                     </li>
                 </ul>
             </div>
@@ -152,12 +132,16 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <button id="view-full-btn" class="view-full-btn">View Full Leaderboard</button>
+                    <div class="pagination">
+                        <button id="prev-btn" class="nav-btn">&lt;</button>
+                        <span id="page-info">Page 1</span>
+                        <button id="next-btn" class="nav-btn">&gt;</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="./main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
