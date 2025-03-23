@@ -276,7 +276,7 @@ body {
 
 .leaderboard-container {
     display: flex;
-    gap: 100px; /* Khoảng cách giữa bảng thể loại và bảng player */
+    gap: 100px;
     max-width: 100%;
 }
 
@@ -408,9 +408,10 @@ h1 {
     background-color: #3b4b46;
 }
 
+/* Màu cho top 3 */
 #leaderboard-table tr.rank-1 {
-    background-color: #FFC107;
-    color: #212121;
+    background-color: #FFD700;
+    color: #1a1a1a;
     font-weight: 700;
 }
 
@@ -426,15 +427,17 @@ h1 {
     font-weight: 600;
 }
 
+/* Cột chung */
 #leaderboard-table .rank {
     width: 40px;
-    text-align: center;
+    text-align: left;
     font-weight: 600;
     color: #baca44;
 }
 
 #leaderboard-table .name {
     width: 40%;
+    padding-left: 5px;
 }
 
 #leaderboard-table .rating {
@@ -444,15 +447,36 @@ h1 {
     color: #f3c678;
 }
 
-#leaderboard-table .attempts,
-#leaderboard-table .success,
-#leaderboard-table .last-effort {
-    width: 15%;
-    text-align: center;
-    font-weight: 500;
-    color: #e5e7eb;
+/* Cột cho Puzzle và 3 Check */
+#leaderboard-table[data-category="tactics"] .rank,
+#leaderboard-table[data-category="live_threecheck"] .rank {
+    width: 40px;
+    text-align: left;
+    font-weight: 600;
+    color: #baca44;
 }
 
+#leaderboard-table[data-category="tactics"] .name,
+#leaderboard-table[data-category="live_threecheck"] .name {
+    width: 60%;
+    padding-left: 5px;
+}
+
+#leaderboard-table[data-category="tactics"] .rating,
+#leaderboard-table[data-category="live_threecheck"] .rating {
+    width: 35%;
+    text-align: right;
+    font-weight: 500;
+    color: #f3c678;
+}
+
+/* Cột cho Puzzle Rush */
+#leaderboard-table[data-category="rush"] .rating {
+    text-align: right;
+    width: auto;
+}
+
+/* Các cột khác */
 #leaderboard-table .won,
 #leaderboard-table .draw,
 #leaderboard-table .lost {

@@ -1,4 +1,4 @@
-// lấy các phần tử DOM
+// Lấy các phần tử DOM
 const categoryItems = document.querySelectorAll('.category-item');
 const leaderboardTable = document.getElementById('leaderboard-table');
 const tbody = leaderboardTable && leaderboardTable.querySelector('tbody');
@@ -18,7 +18,7 @@ let currentCategory = 'live_blitz';
 let playersData = [];
 const playersPerPage = 10;
 
-// hàm hiển thị bảng xếp hạng
+// Hàm hiển thị bảng xếp hạng
 function displayLeaderboard() {
     if (!leaderboardTable || !tbody || !tableHeader) return;
 
@@ -26,7 +26,11 @@ function displayLeaderboard() {
     const end = Math.min(start + playersPerPage, playersData.length);
     const playersToShow = playersData.slice(start, end);
 
-    if (currentCategory === 'tactics') {
+    // Gắn data-category để CSS áp dụng đúng
+    leaderboardTable.setAttribute('data-category', currentCategory);
+
+    // Điều chỉnh header dựa trên category
+    if (currentCategory === 'tactics' || currentCategory === 'rush' || currentCategory === 'live_threecheck') {
         tableHeader.innerHTML = `
             <th class="rank">#</th>
             <th class="name">Player</th>
@@ -46,12 +50,12 @@ function displayLeaderboard() {
     tbody.innerHTML = '';
 
     if (playersData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6">Không hiện data</td></td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6">Không hiện data</td></tr>';
     } else {
         playersToShow.forEach((player, index) => {
             const rank = start + index + 1;
             const tr = document.createElement('tr');
-            if (currentCategory === 'tactics') {
+            if (currentCategory === 'tactics' || currentCategory === 'rush' || currentCategory === 'live_threecheck') {
                 tr.innerHTML = `
                     <td class="rank">${rank}</td>
                     <td class="name">
@@ -101,7 +105,18 @@ async function loadLeaderboard(category) {
         currentCategory = category;
         currentPage = 1;
 
-        categoryTitle.textContent = `${category.replace('live_', '').replace('daily', 'Daily').replace('_', ' ').toUpperCase()} Leaderboard`;
+        // Cập nhật tiêu đề cho từng thể loại
+        let titleText = category.replace('live_', '').replace('daily', 'Daily').replace('_', ' ').toUpperCase();
+        if (category === 'rush') {
+            titleText = 'PUZZLE RUSH';
+        } else if (category === 'tactics') {
+            titleText = 'PUZZLE';
+        } else if (category === 'live_bughouse') {
+            titleText = 'DOUBLES';
+        } else if (category === 'live_threecheck') {
+            titleText = '3 CHECK';
+        }
+        categoryTitle.textContent = `${titleText} Leaderboard`;
 
         displayLeaderboard();
     } catch (error) {
@@ -110,7 +125,7 @@ async function loadLeaderboard(category) {
     }
 }
 
-// sự kiện click vào category
+// Sự kiện click vào category
 if (categoryItems.length > 0) {
     categoryItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -122,7 +137,7 @@ if (categoryItems.length > 0) {
     });
 }
 
-// nút phân trang
+// Nút phân trang
 if (prevBtn && nextBtn) {
     prevBtn.addEventListener('click', () => {
         if (currentPage > 1) {
@@ -181,4 +196,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (leaderboardTable) {
         loadLeaderboard('live_blitz');
     }
-});
+})
