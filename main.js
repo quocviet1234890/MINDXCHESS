@@ -10,10 +10,9 @@ const pageInfo = document.getElementById('page-info');
 const playOption = document.querySelector('.play-option');
 const newsOption = document.querySelector('.news-option');
 
-// API endpoint
+// API
 const API_URL = 'https://api.chess.com/pub/leaderboards';
 
-// Biến toàn cục
 let currentPage = 1;
 let currentCategory = 'live_blitz';
 let playersData = [];
@@ -27,7 +26,6 @@ function displayLeaderboard() {
     const end = Math.min(start + playersPerPage, playersData.length);
     const playersToShow = playersData.slice(start, end);
 
-    // Điều chỉnh tiêu đề bảng theo category
     if (currentCategory === 'tactics') {
         tableHeader.innerHTML = `
             <th class="rank">#</th>
@@ -99,7 +97,6 @@ function displayLeaderboard() {
     nextBtn.disabled = currentPage >= totalPages;
 }
 
-// Hàm lấy dữ liệu từ API
 async function loadLeaderboard(category) {
     if (!leaderboardTable) return;
 
@@ -119,7 +116,7 @@ async function loadLeaderboard(category) {
     }
 }
 
-// Gắn sự kiện cho các category
+// sự kiện click vào category
 if (categoryItems.length > 0) {
     categoryItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -149,7 +146,6 @@ if (prevBtn && nextBtn) {
     });
 }
 
-// Gắn sự kiện cho Play và News để toggle sub-sidebar, và tắt khi click ra ngoài
 document.addEventListener('DOMContentLoaded', () => {
     if (playOption) {
         playOption.addEventListener('click', (e) => {
@@ -189,6 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (leaderboardTable) {
-        loadLeaderboard('live_blitz'); // Mặc định tải Blitz
+        loadLeaderboard('live_blitz');
     }
 });
