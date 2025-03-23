@@ -490,6 +490,7 @@ h1 {
 #leaderboard-table .player-name {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 #leaderboard-table .player-avatar {
@@ -499,6 +500,7 @@ h1 {
     margin-right: 10px;
     border: 2px solid #baca44;
     box-shadow: 0 0 4px rgba(186, 202, 68, 0.5);
+    cursor: pointer;
 }
 
 .pagination {
@@ -535,4 +537,121 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #ffffff;
+}
+
+/* Profile Styles (Chess.com replica) */
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.profile-avatar {
+    margin-right: 20px;
+}
+
+#player-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px; /* Hình vuông giống Chess.com */
+    border: 2px solid #baca44;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+#player-username {
+    font-size: 28px;
+    margin: 0 0 10px;
+    color: #ffffff;
+}
+
+.player-detail {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #b0b8b4;
+    margin-bottom: 8px;
+}
+
+.detail-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    filter: grayscale(100%);
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background-color: #baca44;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e2a27;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #d4de6a;
+}
+
+.profile-stats {
+    margin-top: 20px;
+}
+
+.stats-section {
+    background-color: #1e2a27;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stats-section h2 {
+    font-size: 24px;
+    margin: 0 0 15px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #d1d5db;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f3c678;
+    margin-bottom: 5px;
+}
+
+.stat-record {
+    font-size: 14px;
+    color: #b0b8b4;
 }

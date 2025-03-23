@@ -57,9 +57,9 @@ function displayLeaderboard() {
                 tr.innerHTML = `
                     <td class="rank">${rank}</td>
                     <td class="name">
-                        <div class="player-name">
+                        <div class="player-name" data-username="${player.username}">
                             <img src="${player.avatar || 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png'}" alt="Avatar" class="player-avatar">
-                            ${player.username}
+                            <span class="player-username">${player.username}</span>
                         </div>
                     </td>
                     <td class="rating">${player.score}</td>
@@ -68,9 +68,9 @@ function displayLeaderboard() {
                 tr.innerHTML = `
                     <td class="rank">${rank}</td>
                     <td class="name">
-                        <div class="player-name">
+                        <div class="player-name" data-username="${player.username}">
                             <img src="${player.avatar || 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png'}" alt="Avatar" class="player-avatar">
-                            ${player.username}
+                            <span class="player-username">${player.username}</span>
                         </div>
                     </td>
                     <td class="rating">${player.score}</td>
@@ -91,6 +91,21 @@ function displayLeaderboard() {
 
     prevBtn.disabled = currentPage <= 1;
     nextBtn.disabled = currentPage >= totalPages;
+
+    // Thêm sự kiện nhấp chuột vào avatar và tên người chơi
+    document.querySelectorAll('.player-name, .player-avatar, .player-username').forEach(element => {
+        element.addEventListener('click', (e) => {
+            const playerNameDiv = e.target.closest('.player-name');
+            if (playerNameDiv) {
+                const username = playerNameDiv.dataset.username;
+                if (username) {
+                    window.location.href = `profile.html?username=${username}`;
+                } else {
+                    console.error('Username not found in data-username attribute');
+                }
+            }
+        });
+    });
 }
 
 async function loadLeaderboard(category) {
