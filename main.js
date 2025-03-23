@@ -26,11 +26,9 @@ function displayLeaderboard() {
     const end = Math.min(start + playersPerPage, playersData.length);
     const playersToShow = playersData.slice(start, end);
 
-    // Gắn data-category để CSS áp dụng đúng
     leaderboardTable.setAttribute('data-category', currentCategory);
 
-    // Điều chỉnh header dựa trên category
-    if (currentCategory === 'tactics' || currentCategory === 'rush' || currentCategory === 'live_threecheck') {
+    if (currentCategory === 'tactics' || currentCategory === 'rush' || currentCategory === 'live_threecheck' || currentCategory === 'live_crazyhouse' || currentCategory === 'live_kingofthehill') {
         tableHeader.innerHTML = `
             <th class="rank">#</th>
             <th class="name">Player</th>
@@ -55,7 +53,7 @@ function displayLeaderboard() {
         playersToShow.forEach((player, index) => {
             const rank = start + index + 1;
             const tr = document.createElement('tr');
-            if (currentCategory === 'tactics' || currentCategory === 'rush' || currentCategory === 'live_threecheck') {
+            if (currentCategory === 'tactics' || currentCategory === 'rush' || currentCategory === 'live_threecheck' || currentCategory === 'live_crazyhouse' || currentCategory === 'live_kingofthehill') {
                 tr.innerHTML = `
                     <td class="rank">${rank}</td>
                     <td class="name">
@@ -105,7 +103,6 @@ async function loadLeaderboard(category) {
         currentCategory = category;
         currentPage = 1;
 
-        // Cập nhật tiêu đề cho từng thể loại
         let titleText = category.replace('live_', '').replace('daily', 'Daily').replace('_', ' ').toUpperCase();
         if (category === 'rush') {
             titleText = 'PUZZLE RUSH';
@@ -115,6 +112,10 @@ async function loadLeaderboard(category) {
             titleText = 'DOUBLES';
         } else if (category === 'live_threecheck') {
             titleText = '3 CHECK';
+        } else if (category === 'live_crazyhouse') {
+            titleText = 'CRAZYHOUSE';
+        } else if (category === 'live_kingofthehill') {
+            titleText = 'KING OF THE HILL';
         }
         categoryTitle.textContent = `${titleText} Leaderboard`;
 
@@ -196,4 +197,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (leaderboardTable) {
         loadLeaderboard('live_blitz');
     }
-})
+});

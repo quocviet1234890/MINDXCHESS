@@ -408,7 +408,6 @@ h1 {
     background-color: #3b4b46;
 }
 
-/* Màu cho top 3 */
 #leaderboard-table tr.rank-1 {
     background-color: #FFD700;
     color: #1a1a1a;
@@ -427,7 +426,6 @@ h1 {
     font-weight: 600;
 }
 
-/* Cột chung */
 #leaderboard-table .rank {
     width: 40px;
     text-align: left;
@@ -447,9 +445,10 @@ h1 {
     color: #f3c678;
 }
 
-/* Cột cho Puzzle và 3 Check */
 #leaderboard-table[data-category="tactics"] .rank,
-#leaderboard-table[data-category="live_threecheck"] .rank {
+#leaderboard-table[data-category="live_threecheck"] .rank,
+#leaderboard-table[data-category="live_crazyhouse"] .rank,
+#leaderboard-table[data-category="live_kingofthehill"] .rank {
     width: 40px;
     text-align: left;
     font-weight: 600;
@@ -457,26 +456,28 @@ h1 {
 }
 
 #leaderboard-table[data-category="tactics"] .name,
-#leaderboard-table[data-category="live_threecheck"] .name {
+#leaderboard-table[data-category="live_threecheck"] .name,
+#leaderboard-table[data-category="live_crazyhouse"] .name,
+#leaderboard-table[data-category="live_kingofthehill"] .name {
     width: 60%;
     padding-left: 5px;
 }
 
 #leaderboard-table[data-category="tactics"] .rating,
-#leaderboard-table[data-category="live_threecheck"] .rating {
+#leaderboard-table[data-category="live_threecheck"] .rating,
+#leaderboard-table[data-category="live_crazyhouse"] .rating,
+#leaderboard-table[data-category="live_kingofthehill"] .rating {
     width: 35%;
     text-align: right;
     font-weight: 500;
     color: #f3c678;
 }
 
-/* Cột cho Puzzle Rush */
 #leaderboard-table[data-category="rush"] .rating {
     text-align: right;
     width: auto;
 }
 
-/* Các cột khác */
 #leaderboard-table .won,
 #leaderboard-table .draw,
 #leaderboard-table .lost {
