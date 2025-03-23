@@ -22,6 +22,7 @@ body {
     top: 0;
     left: 0;
     overflow-y: auto;
+    z-index: 10;
 }
 
 .logo {
@@ -54,6 +55,7 @@ body {
     width: 135px;
     box-sizing: border-box;
     position: relative;
+    cursor: pointer;
 }
 
 .hand-icon, .quiz-icon, .learn-icon, .binoculars-icon, .news-icon, .social-icon, .more-icon {
@@ -68,7 +70,6 @@ body {
     color: #ffffff;
     font-weight: 500;
     padding: 4px 8px;
-    cursor: pointer;
     display: inline-block;
 }
 
@@ -78,7 +79,6 @@ body {
 }
 
 .sub-sidebar {
-    display: none;
     position: fixed;
     left: 160px;
     top: 0;
@@ -89,10 +89,12 @@ body {
     border-radius: 0 8px 8px 0;
     padding: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 5;
+    display: none;
 }
 
-.play-option:hover .sub-sidebar, .news-option:hover .sub-sidebar {
+.play-option.active .sub-sidebar,
+.news-option.active .sub-sidebar {
     display: block;
 }
 
@@ -268,11 +270,13 @@ body {
     color: #ffffff;
     margin-left: 160px;
     overflow-x: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .leaderboard-container {
     display: flex;
-    gap: 60px;
+    gap: 100px; /* Khoảng cách giữa bảng thể loại và bảng player */
     max-width: 100%;
 }
 
@@ -341,7 +345,6 @@ h1 {
 .leaderboard-main {
     flex: 1;
     max-width: 700px;
-    margin-left: 100px; /* Di chuyển bảng xếp hạng ra bên phải */
 }
 
 .leaderboard-table {
@@ -405,22 +408,21 @@ h1 {
     background-color: #3b4b46;
 }
 
-/* Làm nổi bật hạng 1, 2, 3 */
-#leaderboard-table tr:nth-child(2) { /* Hạng 1 (sau header) */
-    background-color: #ffd700; /* Vàng */
-    color: #1e2a27;
+#leaderboard-table tr.rank-1 {
+    background-color: #FFC107;
+    color: #212121;
     font-weight: 700;
 }
 
-#leaderboard-table tr:nth-child(3) { /* Hạng 2 */
-    background-color: #c0c0c0; /* Bạc */
-    color: #1e2a27;
+#leaderboard-table tr.rank-2 {
+    background-color: #B0BEC5;
+    color: #212121;
     font-weight: 600;
 }
 
-#leaderboard-table tr:nth-child(4) { /* Hạng 3 */
-    background-color: #cd7f32; /* Đồng */
-    color: #1e2a27;
+#leaderboard-table tr.rank-3 {
+    background-color: #FF8A65;
+    color: #212121;
     font-weight: 600;
 }
 
@@ -442,20 +444,17 @@ h1 {
     color: #f3c678;
 }
 
-#leaderboard-table .won {
+#leaderboard-table .attempts,
+#leaderboard-table .success,
+#leaderboard-table .last-effort {
     width: 15%;
     text-align: center;
     font-weight: 500;
     color: #e5e7eb;
 }
 
-#leaderboard-table .draw {
-    width: 15%;
-    text-align: center;
-    font-weight: 500;
-    color: #e5e7eb;
-}
-
+#leaderboard-table .won,
+#leaderboard-table .draw,
 #leaderboard-table .lost {
     width: 15%;
     text-align: center;
@@ -477,7 +476,6 @@ h1 {
     box-shadow: 0 0 4px rgba(186, 202, 68, 0.5);
 }
 
-/* Phân trang */
 .pagination {
     display: flex;
     justify-content: center;
