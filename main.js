@@ -1,4 +1,4 @@
-// Lấy các phần tử DOM cần thiết
+// lấy các phần tử DOM
 const categoryItems = document.querySelectorAll('.category-item');
 const leaderboardTable = document.getElementById('leaderboard-table');
 const tbody = leaderboardTable && leaderboardTable.querySelector('tbody');
@@ -10,7 +10,7 @@ const pageInfo = document.getElementById('page-info');
 const playOption = document.querySelector('.play-option');
 const newsOption = document.querySelector('.news-option');
 
-// API
+// API leaderboard
 const API_URL = 'https://api.chess.com/pub/leaderboards';
 
 let currentPage = 1;
@@ -18,7 +18,7 @@ let currentCategory = 'live_blitz';
 let playersData = [];
 const playersPerPage = 10;
 
-// Hàm hiển thị bảng xếp hạng
+// hàm hiển thị bảng xếp hạng
 function displayLeaderboard() {
     if (!leaderboardTable || !tbody || !tableHeader) return;
 
@@ -49,7 +49,7 @@ function displayLeaderboard() {
     tbody.innerHTML = '';
 
     if (playersData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6">No data available for this category</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6">Không hiện data</td></td></tr>';
     } else {
         playersToShow.forEach((player, index) => {
             const rank = start + index + 1;
@@ -128,7 +128,7 @@ if (categoryItems.length > 0) {
     });
 }
 
-// Gắn sự kiện cho nút phân trang
+// nút phân trang
 if (prevBtn && nextBtn) {
     prevBtn.addEventListener('click', () => {
         if (currentPage > 1) {
