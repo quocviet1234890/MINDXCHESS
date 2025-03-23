@@ -31,9 +31,6 @@ function displayLeaderboard() {
             <th class="rank">#</th>
             <th class="name">Player</th>
             <th class="rating">Rating</th>
-            <th class="attempts">Attempts</th>
-            <th class="success">Successes</th>
-            <th class="last-effort">Last Effort</th>
         `;
     } else {
         tableHeader.innerHTML = `
@@ -64,9 +61,6 @@ function displayLeaderboard() {
                         </div>
                     </td>
                     <td class="rating">${player.score}</td>
-                    <td class="attempts">-</td>
-                    <td class="success">-</td>
-                    <td class="last-effort">-</td>
                 `;
             } else {
                 tr.innerHTML = `
