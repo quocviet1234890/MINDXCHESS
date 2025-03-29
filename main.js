@@ -1,4 +1,154 @@
-// Lấy các phần tử DOM
+const translations = {
+    en: {
+        play: "Play",
+        puzzle: "Puzzle",
+        learn: "Learn",
+        watch: "Watch",
+        news: "News",
+        social: "Social",
+        more: "More",
+        leaderboard: "Leaderboard",
+        top_players: "Top Players",
+        search_players: "Search Players",
+        sign_up: "Sign Up",
+        log_in: "Log In",
+        log_out: "Log Out",
+        language: "Language",
+        support: "Support",
+        login_title: "Log In to Mindx Chess",
+        username_or_email: "Username or Email",
+        enter_username_or_email: "Enter username or email",
+        password: "Password",
+        enter_password: "Enter password",
+        forgot_password: "Forgot password?",
+        new_to_mindx_chess: "New to Mindx Chess? <a href='signup.html' data-i18n='sign_up'>Sign Up</a>",
+        logged_in_success: "Logged in successfully!",
+        signup_title: "Create Your Account",
+        username: "Username",
+        choose_username: "Choose a username",
+        email: "Email",
+        enter_email: "Enter your email",
+        create_password: "Create a password",
+        already_have_account: "Already have an account? <a href='login.html' data-i18n='log_in'>Log In</a>",
+    },
+    vi: {
+        play: "Chơi",
+        puzzle: "Câu đố",
+        learn: "Học",
+        watch: "Xem",
+        news: "Tin tức",
+        social: "Xã hội",
+        more: "Thêm",
+        leaderboard: "Bảng xếp hạng",
+        top_players: "Người chơi hàng đầu",
+        search_players: "Tìm kiếm người chơi",
+        sign_up: "Đăng ký",
+        log_in: "Đăng nhập",
+        log_out: "Đăng xuất",
+        language: "Ngôn ngữ",
+        support: "Hỗ trợ",
+        login_title: "Đăng nhập vào Mindx Chess",
+        username_or_email: "Tên người dùng hoặc Email",
+        enter_username_or_email: "Nhập tên người dùng hoặc email",
+        password: "Mật khẩu",
+        enter_password: "Nhập mật khẩu",
+        forgot_password: "Quên mật khẩu?",
+        new_to_mindx_chess: "Mới tham gia Mindx Chess? <a href='signup.html' data-i18n='sign_up'>Đăng ký</a>",
+        logged_in_success: "Đăng nhập thành công!",
+        signup_title: "Tạo tài khoản của bạn",
+        username: "Tên người dùng",
+        choose_username: "Chọn tên người dùng",
+        email: "Email",
+        enter_email: "Nhập email của bạn",
+        create_password: "Tạo mật khẩu",
+        already_have_account: "Đã có tài khoản? <a href='login.html' data-i18n='log_in'>Đăng nhập</a>",
+    },
+    es: {
+        play: "Jugar",
+        puzzle: "Puzle",
+        learn: "Aprender",
+        watch: "Mirar",
+        news: "Noticias",
+        social: "Social",
+        more: "Más",
+        leaderboard: "Clasificación",
+        top_players: "Mejores Jugadores",
+        search_players: "Buscar Jugadores",
+        sign_up: "Registrarse",
+        log_in: "Iniciar Sesión",
+        log_out: "Cerrar Sesión",
+        language: "Idioma",
+        support: "Soporte",
+        login_title: "Iniciar Sesión en Mindx Chess",
+        username_or_email: "Nombre de usuario o Email",
+        enter_username_or_email: "Ingresa nombre de usuario o email",
+        password: "Contraseña",
+        enter_password: "Ingresa contraseña",
+        forgot_password: "¿Olvidaste tu contraseña?",
+        new_to_mindx_chess: "¿Nuevo en Mindx Chess? <a href='signup.html' data-i18n='sign_up'>Registrarse</a>",
+        logged_in_success: "¡Sesión iniciada con éxito!",
+        signup_title: "Crea Tu Cuenta",
+        username: "Nombre de usuario",
+        choose_username: "Elige un nombre de usuario",
+        email: "Email",
+        enter_email: "Ingresa tu email",
+        create_password: "Crea una contraseña",
+        already_have_account: "¿Ya tienes una cuenta? <a href='login.html' data-i18n='log_in'>Iniciar Sesión</a>",
+    },
+    fr: {
+        play: "Jouer",
+        puzzle: "Puzzle",
+        learn: "Apprendre",
+        watch: "Regarder",
+        news: "Nouvelles",
+        social: "Social",
+        more: "Plus",
+        leaderboard: "Classement",
+        top_players: "Meilleurs Joueurs",
+        search_players: "Rechercher des Joueurs",
+        sign_up: "S'inscrire",
+        log_in: "Se Connecter",
+        log_out: "Se Déconnecter",
+        language: "Langue",
+        support: "Support",
+        login_title: "Se Connecter à Mindx Chess",
+        username_or_email: "Nom d'utilisateur ou Email",
+        enter_username_or_email: "Entrez nom d'utilisateur ou email",
+        password: "Mot de passe",
+        enter_password: "Entrez mot de passe",
+        forgot_password: "Mot de passe oublié ?",
+        new_to_mindx_chess: "Nouveau sur Mindx Chess ? <a href='signup.html' data-i18n='sign_up'>S'inscrire</a>",
+        logged_in_success: "Connexion réussie !",
+        signup_title: "Créez Votre Compte",
+        username: "Nom d'utilisateur",
+        choose_username: "Choisissez un nom d'utilisateur",
+        email: "Email",
+        enter_email: "Entrez votre email",
+        create_password: "Créez un mot de passe",
+        already_have_account: "Vous avez déjà un compte ? <a href='login.html' data-i18n='log_in'>Se Connecter</a>",
+    }
+};
+
+let currentLanguage = localStorage.getItem('language') || 'en';
+
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            if (element.tagName === 'INPUT' && element.hasAttribute('data-i18n-placeholder')) {
+                element.placeholder = translations[lang][element.getAttribute('data-i18n-placeholder')];
+            } else if (element.innerHTML.includes('<a')) {
+                element.innerHTML = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
+        }
+    });
+}
+
 const categoryItems = document.querySelectorAll('.category-item');
 const leaderboardTable = document.getElementById('leaderboard-table');
 const tbody = leaderboardTable && leaderboardTable.querySelector('tbody');
@@ -9,8 +159,13 @@ const nextBtn = document.getElementById('next-btn');
 const pageInfo = document.getElementById('page-info');
 const playOption = document.querySelector('.play-option');
 const newsOption = document.querySelector('.news-option');
+const signupBtn = document.querySelector('.signup-btn');
+const loginBtn = document.querySelector('.login-btn');
+const logoutBtn = document.querySelector('.logout-btn');
+const userInfo = document.getElementById('user-info');
+const logoutOption = document.getElementById('logout-option');
+const languageOption = document.querySelector('.language-option');
 
-// API leaderboard
 const API_URL = 'https://api.chess.com/pub/leaderboards';
 
 let currentPage = 1;
@@ -18,7 +173,6 @@ let currentCategory = 'live_blitz';
 let playersData = [];
 const playersPerPage = 10;
 
-// Hàm hiển thị bảng xếp hạng
 function displayLeaderboard() {
     if (!leaderboardTable || !tbody || !tableHeader) return;
 
@@ -48,7 +202,7 @@ function displayLeaderboard() {
     tbody.innerHTML = '';
 
     if (playersData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6">Không hiện data</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6">No data available</td></tr>';
     } else {
         playersToShow.forEach((player, index) => {
             const rank = start + index + 1;
@@ -92,7 +246,6 @@ function displayLeaderboard() {
     prevBtn.disabled = currentPage <= 1;
     nextBtn.disabled = currentPage >= totalPages;
 
-    // Thêm sự kiện nhấp chuột vào avatar và tên người chơi
     document.querySelectorAll('.player-name, .player-avatar, .player-username').forEach(element => {
         element.addEventListener('click', (e) => {
             const playerNameDiv = e.target.closest('.player-name');
@@ -100,8 +253,6 @@ function displayLeaderboard() {
                 const username = playerNameDiv.dataset.username;
                 if (username) {
                     window.location.href = `profile.html?username=${username}`;
-                } else {
-                    console.error('Username not found in data-username attribute');
                 }
             }
         });
@@ -119,19 +270,12 @@ async function loadLeaderboard(category) {
         currentPage = 1;
 
         let titleText = category.replace('live_', '').replace('daily', 'Daily').replace('_', ' ').toUpperCase();
-        if (category === 'rush') {
-            titleText = 'PUZZLE RUSH';
-        } else if (category === 'tactics') {
-            titleText = 'PUZZLE';
-        } else if (category === 'live_bughouse') {
-            titleText = 'DOUBLES';
-        } else if (category === 'live_threecheck') {
-            titleText = '3 CHECK';
-        } else if (category === 'live_crazyhouse') {
-            titleText = 'CRAZYHOUSE';
-        } else if (category === 'live_kingofthehill') {
-            titleText = 'KING OF THE HILL';
-        }
+        if (category === 'rush') titleText = 'PUZZLE RUSH';
+        else if (category === 'tactics') titleText = 'PUZZLE';
+        else if (category === 'live_bughouse') titleText = 'DOUBLES';
+        else if (category === 'live_threecheck') titleText = '3 CHECK';
+        else if (category === 'live_crazyhouse') titleText = 'CRAZYHOUSE';
+        else if (category === 'live_kingofthehill') titleText = 'KING OF THE HILL';
         categoryTitle.textContent = `${titleText} Leaderboard`;
 
         displayLeaderboard();
@@ -141,44 +285,73 @@ async function loadLeaderboard(category) {
     }
 }
 
-// Sự kiện click vào category
-if (categoryItems.length > 0) {
-    categoryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            categoryItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            const category = item.getAttribute('data-type');
-            loadLeaderboard(category);
-        });
-    });
+function updateSidebar() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const signupOption = document.getElementById('signup-option');
+    const loginOption = document.getElementById('login-option');
+    const logoutOption = document.getElementById('logout-option');
+    const userInfo = document.getElementById('user-info');
+
+    if (user) {
+        document.getElementById('user-avatar').src = user.avatar || 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png';
+        document.getElementById('user-name').textContent = user.username;
+        userInfo.style.display = 'flex';
+        signupOption.style.display = 'none';
+        loginOption.style.display = 'none';
+        logoutOption.style.display = 'block';
+    } else {
+        userInfo.style.display = 'none';
+        signupOption.style.display = 'block';
+        loginOption.style.display = 'block';
+        logoutOption.style.display = 'none';
+    }
 }
 
-// Nút phân trang
-if (prevBtn && nextBtn) {
-    prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            displayLeaderboard();
-        }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        const totalPages = Math.ceil(playersData.length / playersPerPage) || 1;
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayLeaderboard();
-        }
-    });
+function showLoginNotification() {
+    const notification = document.getElementById('login-notification');
+    if (notification) {
+        notification.style.display = 'flex';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (hamburger && sidebar) {
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    }
+
+    changeLanguage(currentLanguage);
+
     if (playOption) {
         playOption.addEventListener('click', (e) => {
             e.preventDefault();
             playOption.classList.toggle('active');
             if (newsOption) newsOption.classList.remove('active');
+            if (languageOption) languageOption.classList.remove('active');
             e.stopPropagation();
         });
+
+        // Thêm sự kiện cho mục Leaderboard trong sub-sidebar
+        const leaderboardLink = document.querySelector('.leaderboard-text');
+        if (leaderboardLink) {
+            leaderboardLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = leaderboardLink.getAttribute('href');
+            });
+        }
     }
 
     if (newsOption) {
@@ -186,7 +359,35 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             newsOption.classList.toggle('active');
             if (playOption) playOption.classList.remove('active');
+            if (languageOption) languageOption.classList.remove('active');
             e.stopPropagation();
+        });
+
+        const topPlayersLink = document.querySelector('.top-players-text');
+        if (topPlayersLink) {
+            topPlayersLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = topPlayersLink.getAttribute('href');
+            });
+        }
+    }
+
+    if (languageOption) {
+        languageOption.addEventListener('click', (e) => {
+            e.preventDefault();
+            languageOption.classList.toggle('active');
+            if (playOption) playOption.classList.remove('active');
+            if (newsOption) newsOption.classList.remove('active');
+            e.stopPropagation();
+        });
+
+        const languageItems = document.querySelectorAll('.language-item');
+        languageItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const lang = item.getAttribute('data-lang');
+                changeLanguage(lang);
+                e.stopPropagation();
+            });
         });
     }
 
@@ -194,22 +395,112 @@ document.addEventListener('DOMContentLoaded', () => {
         const subSidebar = document.querySelector('.sub-sidebar');
         const isClickInsidePlay = playOption && playOption.contains(e.target);
         const isClickInsideNews = newsOption && newsOption.contains(e.target);
+        const isClickInsideLanguage = languageOption && languageOption.contains(e.target);
         const isClickInsideSubSidebar = subSidebar && subSidebar.contains(e.target);
 
-        if (!isClickInsidePlay && !isClickInsideNews && !isClickInsideSubSidebar) {
+        if (!isClickInsidePlay && !isClickInsideNews && !isClickInsideLanguage && !isClickInsideSubSidebar) {
             if (playOption) playOption.classList.remove('active');
             if (newsOption) newsOption.classList.remove('active');
+            if (languageOption) languageOption.classList.remove('active');
         }
     });
 
-    const subSidebars = document.querySelectorAll('.sub-sidebar');
-    subSidebars.forEach(sub => {
-        sub.addEventListener('click', (e) => {
-            e.stopPropagation();
+    if (signupBtn) {
+        signupBtn.addEventListener('click', () => {
+            window.location.href = 'signup.html';
         });
-    });
+    }
 
-    if (leaderboardTable) {
-        loadLeaderboard('live_blitz');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+            updateSidebar();
+            window.location.href = 'index.html';
+        });
+    }
+
+    updateSidebar();
+
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => (u.username === username || u.email === username) && u.password === password);
+
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                showLoginNotification();
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                alert('Invalid username/email or password');
+            }
+        });
+    }
+
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(u => u.username === username)) {
+                alert('Username already exists');
+                return;
+            }
+            if (users.some(u => u.email === email)) {
+                alert('Email already registered');
+                return;
+            }
+
+            const newUser = { username, email, password, avatar: 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png' };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            window.location.href = 'index.html';
+        });
+    }
+
+    if (categoryItems.length > 0) {
+        categoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                categoryItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                const category = item.getAttribute('data-type');
+                loadLeaderboard(category);
+            });
+        });
+        loadLeaderboard(currentCategory); // Tải bảng xếp hạng mặc định khi vào trang
+    }
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayLeaderboard();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(playersData.length / playersPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayLeaderboard();
+            }
+        });
     }
 });

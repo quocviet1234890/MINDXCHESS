@@ -1,78 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINDX CHESS - Player Profile</title>
+    <title>MINDX CHESS - Profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon_io.zip" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <button class="hamburger"><i class="fas fa-bars"></i></button>
     <div class="sidebar">
         <div class="logo">
             <img src="img/img_pawn1.jpg" alt="Pawn icon" class="pawn-image">
             <span class="logo-text">Mindx.chess</span>
         </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <img id="user-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="User Avatar" class="user-avatar">
+            <span id="user-name" class="user-name">Username</span>
+        </div>
         <div class="play-option">
-            <img src="img/img_pawn.jpg" alt="Bàn tay cầm con chốt" class="hand-icon">
-            <span class="play-text">Play</span>
-            <div class="sub-sidebar">
+            <img src="img/img_pawn.jpg" alt="Play icon" class="hand-icon">
+            <span class="play-text" data-i18n="play">Play</span>
+            <div class="sub-sidebar" id="play-sub-sidebar">
                 <div class="sub-item leaderboard">
                     <img src="img/img_leaderboard.jpg" alt="Leaderboard icon" class="leaderboard-icon">
-                    <a href="leaderboard.html" class="leaderboard-text">Leaderboard</a>
+                    <a href="leaderboard.html" class="leaderboard-text" data-i18n="leaderboard">Leaderboard</a>
                 </div>
             </div>
         </div>
         <div class="quiz-option">
-            <img src="img/img_puzzle.jpg" alt="Quiz icon" class="quiz-icon">
-            <span class="quiz-text">Puzzle</span>
+            <img src="img/img_puzzle.jpg" alt="Puzzle icon" class="quiz-icon">
+            <span class="quiz-text" data-i18n="puzzle">Puzzle</span>
         </div>
         <div class="learn-option">
             <img src="img/img_learn.jpg" alt="Learn icon" class="learn-icon">
-            <span class="learn-text">Learn</span>
+            <span class="learn-text" data-i18n="learn">Learn</span>
         </div>
         <div class="watch-option">
-            <img src="img/img_binoculars.jpg" alt="Binoculars icon" class="binoculars-icon">
-            <span class="binoculars-text">Watch</span>
+            <img src="img/img_binoculars.jpg" alt="Watch icon" class="binoculars-icon">
+            <span class="binoculars-text" data-i18n="watch">Watch</span>
         </div>
         <div class="news-option">
             <img src="img/img_news.jpg" alt="News icon" class="news-icon">
-            <span class="news-text">News</span>
-            <div class="sub-sidebar">
+            <span class="news-text" data-i18n="news">News</span>
+            <div class="sub-sidebar" id="news-sub-sidebar">
                 <div class="sub-item top-players">
                     <img src="img/img_vuongmien.jpg" alt="Top Players icon" class="top-players-icon">
-                    <a href="top_players.html" class="top-players-text">Top Players</a>
+                    <a href="top_players.html" class="top-players-text" data-i18n="top_players">Top Players</a>
                 </div>
             </div>
         </div>
         <div class="social-option">
             <img src="img/img_social.jpg" alt="Social icon" class="social-icon">
-            <span class="social-text">Social</span>
+            <span class="social-text" data-i18n="social">Social</span>
         </div>
         <div class="more-option">
             <img src="img/img_more.jpg" alt="More icon" class="more-icon">
-            <span class="more-text">More</span>
+            <span class="more-text" data-i18n="more">More</span>
         </div>
         <div class="search-option">
             <div class="search-container">
                 <img src="img/img_search.jpg" alt="Search Icon" class="search-icon">
-                <input type="text" class="search-input" placeholder="Search">
+                <input type="text" class="search-input" placeholder="Search Players" id="search-player" data-i18n-placeholder="search_players">
             </div>
+            <div class="sub-sidebar search-results" id="search-results"></div>
         </div>
-        <div class="signup-option">
-            <button class="signup-btn">Sign Up</button>
+        <div class="signup-option" id="signup-option">
+            <button class="signup-btn" data-i18n="sign_up">Sign Up</button>
         </div>
-        <div class="login-option">
-            <button class="login-btn">Log In</button>
+        <div class="login-option" id="login-option">
+            <button class="login-btn" data-i18n="log_in">Log In</button>
+        </div>
+        <div class="logout-option" id="logout-option" style="display: none;">
+            <button class="logout-btn" data-i18n="log_out">Log Out</button>
         </div>
         <div class="language-option">
             <img src="img/img_global.jpg" alt="Language icon" class="language-icon">
-            <span class="language-text">English</span>
+            <span class="language-text" data-i18n="language">Language</span>
+            <div class="sub-sidebar" id="language-sub-sidebar">
+                <div class="sub-item language-item" data-lang="en">
+                    <span class="language-sub-text">English</span>
+                </div>
+                <div class="sub-item language-item" data-lang="vi">
+                    <span class="language-sub-text">Tiếng Việt</span>
+                </div>
+                <div class="sub-item language-item" data-lang="es">
+                    <span class="language-sub-text">Español</span>
+                </div>
+                <div class="sub-item language-item" data-lang="fr">
+                    <span class="language-sub-text">Français</span>
+                </div>
+            </div>
         </div>
         <div class="support-option">
             <img src="img/img_qusetion_mark.jpg" alt="Support icon" class="support-icon">
-            <span class="support-text">Support</span>
+            <span class="support-text" data-i18n="support">Support</span>
         </div>
     </div>
 
@@ -83,55 +107,78 @@
                     <img id="player-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="Player Avatar">
                 </div>
                 <div class="profile-info">
-                    <h1 id="player-username">Username</h1>
+                    <div class="username-title">
+                        <h1 id="player-username">Username</h1>
+                        <span id="player-title" class="player-title"></span>
+                    </div>
                     <div class="player-detail">
                         <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon" class="detail-icon">
-                        <span id="player-location">N/A</span>
+                        <span id="player-location" data-i18n="location_na">N/A</span>
                     </div>
                     <div class="player-detail">
-                        <img src="https://cdn-icons-png.flaticon.com/512/109/109602.png" alt="Last Online Icon" class="detail-icon">
-                        <span id="player-last-online">N/A</span>
+                        <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Last Online Icon" class="detail-icon">
+                        <span id="player-last-online" data-i18n="last_online_na">N/A</span>
                     </div>
                     <div class="player-detail">
-                        <img src="https://www.chess.com/bundles/web/images/grey-pawn.52e48c70.png" alt="Joined Icon" class="detail-icon">
-                        <span id="player-joined">N/A</span>
+                        <img src="https://cdn-icons-png.flaticon.com/512/3652/3652191.png" alt="Joined Icon" class="detail-icon">
+                        <span id="player-joined" data-i18n="joined_na">N/A</span>
                     </div>
-                </div>
-                <div class="profile-actions">
-                    <button class="action-btn">Add Friend</button>
-                    <button class="action-btn">Message</button>
-                    <button class="action-btn">Challenge</button>
+                    <div class="player-detail">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Followers Icon" class="detail-icon">
+                        <span id="player-followers" data-i18n="followers_na">N/A</span>
+                    </div>
+                    <div class="player-detail">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1051/1051377.png" alt="Following Icon" class="detail-icon">
+                        <span id="player-following" data-i18n="following_na">N/A</span>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="add-friend-btn" class="action-btn">
+                            <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Add Friend Icon" class="action-icon">
+                            <span data-i18n="add_friend">Add Friend</span>
+                        </button>
+                        <button id="message-btn" class="action-btn">
+                            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Message Icon" class="action-icon">
+                            <span data-i18n="message">Message</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="profile-stats">
                 <div class="stats-section">
-                    <h2>Stats</h2>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-label">Blitz</div>
-                            <div class="stat-value" id="blitz-rating">-</div>
-                            <div class="stat-record" id="blitz-record">-</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-label">Rapid</div>
-                            <div class="stat-value" id="rapid-rating">-</div>
-                            <div class="stat-record" id="rapid-record">-</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-label">Bullet</div>
-                            <div class="stat-value" id="bullet-rating">-</div>
-                            <div class="stat-record" id="bullet-record">-</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-label">Puzzle</div>
-                            <div class="stat-value" id="puzzle-rating">-</div>
-                        </div>
-                    </div>
+                    <h2 data-i18n="stats">Stats</h2>
+                    <div class="stats-grid" id="stats-grid"></div>
+                </div>
+            </div>
+            <div class="profile-extra">
+                <h2>Bio</h2>
+                <p id="player-bio">This player has not provided a bio yet.</p>
+            </div>
+        </div>
+        <div class="chat-box" id="chat-box" style="display: none;">
+            <div class="chat-header">
+                <img id="chat-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="Chat Avatar" class="chat-avatar">
+                <div class="chat-user-info">
+                    <span id="chat-username">Username</span>
+                    <span id="chat-last-online" class="chat-last-online"></span>
+                    <span id="chat-status" class="status-dot"></span>
+                </div>
+                <button id="minimize-chat" class="chat-action-btn minimize-chat">-</button>
+                <button id="close-chat" class="chat-action-btn">×</button>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." data-i18n-placeholder="type_message">
+                <div class="chat-actions">
+                    <button id="send-message-btn" class="chat-action-btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Send Icon" class="chat-icon">
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="main.js"></script>
     <script src="profile.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

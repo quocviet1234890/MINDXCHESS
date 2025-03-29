@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINDX CHESS - Log In</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon_io.zip" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <img src="img/img_pawn1.jpg" alt="Pawn icon" class="auth-logo">
+                <h1 data-i18n="login_title">Log In to Mindx Chess</h1>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username" data-i18n="username_or_email">Username or Email</label>
+                    <input type="text" id="login-username" placeholder="Enter username or email" data-i18n-placeholder="enter_username_or_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password" data-i18n="password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter password" data-i18n-placeholder="enter_password" required>
+                    <a href="#" class="forgot-password" data-i18n="forgot_password">Forgot password?</a>
+                </div>
+                <button type="submit" class="auth-btn" data-i18n="log_in">Log In</button>
+                <p class="auth-link" data-i18n="new_to_mindx_chess">New to Mindx Chess? <a href="signup.html" data-i18n="sign_up">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="notification" id="login-notification" style="display: none;">
+        <div class="notification-content">
+            <span class="notification-icon">✔</span>
+            <p data-i18n="logged_in_success">Logged in successfully!</p>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
