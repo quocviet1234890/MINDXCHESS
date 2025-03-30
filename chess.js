@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedPiece = null;
     let turn = 'white';
 
-    // Bàn cờ ban đầu (theo chuẩn FEN)
     const initialBoard = [
         ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
         ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let chessboard = JSON.parse(JSON.stringify(initialBoard));
 
-    // Tạo bàn cờ
     function createBoard() {
         board.innerHTML = '';
         for (let row = 0; row < 8; row++) {
@@ -32,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const piece = chessboard[row][col];
                 if (piece) {
                     square.textContent = getPieceSymbol(piece);
-                    square.classList.add(piece === piece.toUpperCase() ? 'white' : 'black');
+                    square.classList.add(piece === piece.toUpperCase() ? 'white-piece' : 'black-piece');
                 }
                 square.addEventListener('click', handleSquareClick);
                 board.appendChild(square);
@@ -40,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Chuyển mã quân cờ thành ký hiệu Unicode
     function getPieceSymbol(piece) {
         const symbols = {
             'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
@@ -49,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return symbols[piece] || '';
     }
 
-    // Xử lý click vào ô
     function handleSquareClick(e) {
         const square = e.target;
         const row = parseInt(square.dataset.row);
@@ -74,13 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Highlight ô được chọn
     function highlightSquare(row, col) {
         const square = document.querySelector(`.square[data-row="${row}"][data-col="${col}"]`);
         square.classList.add('highlight');
     }
 
-    // Highlight các nước đi hợp lệ
     function highlightValidMoves(row, col, piece) {
         const moves = getValidMoves(row, col, piece);
         moves.forEach(move => {
@@ -89,27 +83,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Xóa highlight
     function clearHighlights() {
         document.querySelectorAll('.square').forEach(square => {
             square.classList.remove('highlight', 'valid-move');
         });
     }
 
-    // Kiểm tra nước đi hợp lệ
     function isValidMove(from, to) {
         const moves = getValidMoves(from.row, from.col, from.piece);
         return moves.some(move => move.row === to.row && move.col === to.col);
     }
 
-    // Lấy danh sách nước đi hợp lệ
     function getValidMoves(row, col, piece) {
         const moves = [];
         const isWhite = piece === piece.toUpperCase();
         const direction = isWhite ? -1 : 1;
 
         switch (piece.toLowerCase()) {
-            case 'p': // Tốt
+            case 'p':
                 if (isInBounds(row + direction, col) && !chessboard[row + direction][col]) {
                     moves.push({ row: row + direction, col });
                     if ((isWhite && row === 6) || (!isWhite && row === 1)) {
@@ -125,13 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     moves.push({ row: row + direction, col: col + 1 });
                 }
                 break;
-            case 'r': // Xe
+            case 'r':
                 addLineMoves(moves, row, col, [1, 0], isWhite);
                 addLineMoves(moves, row, col, [-1, 0], isWhite);
                 addLineMoves(moves, row, col, [0, 1], isWhite);
                 addLineMoves(moves, row, col, [0, -1], isWhite);
                 break;
-            case 'n': // Mã
+            case 'n':
                 const knightMoves = [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]];
                 knightMoves.forEach(([dr, dc]) => {
                     if (isInBounds(row + dr, col + dc) && (!chessboard[row + dr][col + dc] || isOpponent(row + dr, col + dc, isWhite))) {
@@ -139,13 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 break;
-            case 'b': // Tượng
+            case 'b':
                 addLineMoves(moves, row, col, [1, 1], isWhite);
                 addLineMoves(moves, row, col, [1, -1], isWhite);
                 addLineMoves(moves, row, col, [-1, 1], isWhite);
                 addLineMoves(moves, row, col, [-1, -1], isWhite);
                 break;
-            case 'q': // Hậu
+            case 'q':
                 addLineMoves(moves, row, col, [1, 0], isWhite);
                 addLineMoves(moves, row, col, [-1, 0], isWhite);
                 addLineMoves(moves, row, col, [0, 1], isWhite);
@@ -155,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 addLineMoves(moves, row, col, [-1, 1], isWhite);
                 addLineMoves(moves, row, col, [-1, -1], isWhite);
                 break;
-            case 'k': // Vua
+            case 'k':
                 const kingMoves = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
                 kingMoves.forEach(([dr, dc]) => {
                     if (isInBounds(row + dr, col + dc) && (!chessboard[row + dr][col + dc] || isOpponent(row + dr, col + dc, isWhite))) {
@@ -167,18 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return moves;
     }
 
-    // Kiểm tra vị trí hợp lệ
     function isInBounds(row, col) {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
 
-    // Kiểm tra quân đối phương
     function isOpponent(row, col, isWhite) {
         const piece = chessboard[row][col];
         return piece && (isWhite ? piece === piece.toLowerCase() : piece === piece.toUpperCase());
     }
 
-    // Thêm nước đi theo đường thẳng (xe, tượng, hậu)
     function addLineMoves(moves, row, col, [dr, dc], isWhite) {
         let r = row + dr, c = col + dc;
         while (isInBounds(r, c)) {
@@ -195,14 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Di chuyển quân cờ
     function movePiece(from, to) {
         chessboard[to.row][to.col] = chessboard[from.row][from.col];
         chessboard[from.row][from.col] = '';
         createBoard();
     }
 
-    // Reset game
     resetBtn.addEventListener('click', () => {
         chessboard = JSON.parse(JSON.stringify(initialBoard));
         turn = 'white';
@@ -211,6 +197,5 @@ document.addEventListener('DOMContentLoaded', () => {
         createBoard();
     });
 
-    // Khởi tạo bàn cờ
     createBoard();
 });

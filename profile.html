@@ -104,56 +104,73 @@
             <div class="profile-container">
                 <div class="profile-header">
                     <div class="profile-avatar">
-                        <img id="player-avatar" src="" alt="Player Avatar">
+                        <img id="player-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="Player Avatar">
                     </div>
                     <div class="profile-info">
                         <div class="username-title">
-                            <h1 id="player-username"></h1>
+                            <h1 id="player-username">Loading...</h1>
                             <span id="player-title" class="player-title"></span>
                         </div>
                         <div class="profile-details">
                             <div class="detail-item">
-                                <i class="fas fa-globe detail-icon"></i>
-                                <span id="player-location"></span>
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span id="player-location">Unknown</span>
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-calendar-alt detail-icon"></i>
-                                <span id="player-joined"></span>
+                                <span id="player-joined">N/A</span>
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-clock detail-icon"></i>
-                                <span id="player-last-online"></span>
+                                <span id="player-last-online">N/A</span>
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-users detail-icon"></i>
-                                <span id="player-followers"></span>
+                                <span id="player-followers">0 Followers</span>
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-user-friends detail-icon"></i>
-                                <span id="player-following"></span>
+                                <span id="player-following">0 Following</span>
                             </div>
                         </div>
                         <div class="profile-actions">
                             <button id="add-friend-btn" class="action-btn">
                                 <i class="fas fa-user-plus action-icon"></i>
-                                <span data-i18n="add_friend">Add Friend</span>
+                                <span>Add Friend</span>
                             </button>
                             <button id="message-btn" class="action-btn">
-                                <i class="fas fa-envelope action-icon"></i>
-                                <span data-i18n="message">Message</span>
+                                <i class="fas fa-comment action-icon"></i>
+                                <span>Message</span>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="profile-stats">
-                    <h2 data-i18n="stats">Stats</h2>
+                    <h2>Statistics</h2>
                     <div id="stats-grid" class="stats-grid"></div>
                 </div>
             </div>
         </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-links">
+                    <a href="#" class="footer-link" data-i18n="about">About</a>
+                    <a href="#" class="footer-link" data-i18n="privacy">Privacy</a>
+                    <a href="#" class="footer-link" data-i18n="terms">Terms</a>
+                    <a href="#" class="footer-link" data-i18n="contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Mindx.chess. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Scripts -->
     <script src="main.js"></script>
     <script src="profile.js"></script>
 </body>
