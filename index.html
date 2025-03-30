@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINDX CHESS</title>
+    <title>Mindx.chess</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon_io.zip" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -86,6 +85,12 @@
                 <div class="sub-item language-item" data-lang="vi">
                     <span class="language-sub-text">Tiếng Việt</span>
                 </div>
+                <div class="sub-item language-item" data-lang="es">
+                    <span class="language-sub-text">Español</span>
+                </div>
+                <div class="sub-item language-item" data-lang="fr">
+                    <span class="language-sub-text">Français</span>
+                </div>
             </div>
         </div>
         <div class="support-option">
@@ -94,36 +99,20 @@
         </div>
     </div>
 
-    <div class="content">
-        <h1>Welcome to Mindx Chess</h1>
-        <p>This is the homepage content.</p>
-    </div>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-links">
-                <a href="https://www.chess.com/about" class="footer-link">About</a>
-                <a href="https://www.chess.com/jobs" class="footer-link">Jobs</a>
-                <a href="https://www.chess.com/developers" class="footer-link">Developers</a>
-                <a href="https://www.chess.com/legal/user-agreement" class="footer-link">User Agreement</a>
-                <a href="https://www.chess.com/legal/privacy" class="footer-link">Privacy</a>
-                <a href="https://www.chess.com/legal/fair-play" class="footer-link">Fair Play</a>
-                <a href="https://support.chess.com/" class="footer-link">Support</a>
-                <a href="https://www.chess.com/terms" class="footer-link">Chess Terms</a>
-            </div>
-            <div class="footer-social">
-                <a href="https://twitter.com/chesscom" class="footer-social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/chess" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/chess" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.twitch.tv/chess" class="footer-social-link"><i class="fab fa-twitch"></i></a>
-            </div>
-            <div class="footer-copyright">
-                © 2025 Chess.com
+    <div class="main-content">
+        <div class="content">
+            <div class="chess-game">
+                <h1>Play Chess</h1>
+                <div id="chessboard"></div>
+                <div class="game-info">
+                    <p>Turn: <span id="turn">White</span></p>
+                    <button id="reset-btn" class="action-btn">Reset Game</button>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script src="main.js"></script>
-    <script src="search.js"></script>
+    <script src="chess.js"></script>
 </body>
 </html>
