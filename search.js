@@ -1,69 +1,61 @@
-const titles = ['GM', 'WGM', 'IM', 'WIM', 'FM', 'WFM', 'NM', 'WNM', 'CM', 'WCM'];
-let allPlayers = [];
-
-async function loadAllPlayers() {
-    const fetchPromises = titles.map(title => 
-        fetch(`https://api.chess.com/pub/titled/${title}`)
-            .then(response => response.json())
-            .then(data => data.players.map(username => ({ username, title })))
-    );
-    const results = await Promise.all(fetchPromises);
-    allPlayers = results.flat();
-}
-
-function displaySearchResults(query) {
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
     const searchResults = document.getElementById('search-results');
-    searchResults.innerHTML = '';
-    searchResults.classList.add('active');
+    const logo = document.querySelector('.sidebar-logo'); // Thêm chọn logo
 
-    const filteredPlayers = allPlayers.filter(player => 
-        player.username.toLowerCase().includes(query.toLowerCase())
-    ).slice(0, 10); // Giới hạn 10 kết quả
+    async function searchPlayers(query) {
+        try {
+            const response = await fetch(`https://api.chess.com/pub/titled/GM`);
+            const gmData = await response.json();
+            const gms = gmData.players;
 
-    if (filteredPlayers.length === 0) {
-        searchResults.innerHTML = '<p>No players found.</p>';
-        return;
+            const filteredPlayers = gms.filter(player => player.toLowerCase().includes(query.toLowerCase()));
+
+            searchResults.innerHTML = '';
+
+            if (filteredPlayers.length === 0) {
+                searchResults.innerHTML = '<p>No players found.</p>';
+            } else {
+                filteredPlayers.forEach(player => {
+                    const playerDiv = document.createElement('div');
+                    playerDiv.classList.add('search-result-item');
+                    playerDiv.innerHTML = `
+                        <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="${player} Avatar" class="search-avatar">
+                        <span class="search-username">${player}</span>
+                    `;
+                    playerDiv.addEventListener('click', () => {
+                        window.location.href = `profile.html?username=${player}`;
+                    });
+                    searchResults.appendChild(playerDiv);
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching players:', error);
+            searchResults.innerHTML = '<p>Error loading players.</p>';
+        }
     }
 
-    filteredPlayers.forEach(player => {
-        fetch(`https://api.chess.com/pub/player/${player.username}`)
-            .then(response => response.json())
-            .then(data => {
-                const div = document.createElement('div');
-                div.classList.add('search-result-item');
-                div.innerHTML = `
-                    <img src="${data.avatar || 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png'}" alt="Avatar" class="search-result-avatar">
-                    <span class="search-result-username">${player.username}</span>
-                    <span class="search-result-title">${player.title}</span>
-                `;
-                div.addEventListener('click', () => {
-                    window.location.href = `profile.html?username=${player.username}`;
-                });
-                searchResults.appendChild(div);
-            });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadAllPlayers();
-
-    const searchInput = document.getElementById('search-player');
-    const searchResults = document.getElementById('search-results');
-
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.trim();
-        if (query.length >= 2) {
-            displaySearchResults(query);
-        } else {
-            searchResults.classList.remove('active');
-            searchResults.innerHTML = '';
+    searchBtn.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            searchPlayers(query);
         }
     });
 
-    document.addEventListener('click', (e) => {
-        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-            searchResults.classList.remove('active');
-            searchResults.innerHTML = '';
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) {
+                searchPlayers(query);
+            }
         }
     });
+
+    // Thêm sự kiện nhấp vào logo để chuyển về trang chủ
+    if (logo) {
+        logo.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
 });

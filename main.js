@@ -292,7 +292,17 @@ function updateSidebar() {
     const logoutOption = document.getElementById('logout-option');
     const userInfo = document.getElementById('user-info');
 
-    if (user) {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
+    if (loggedInUser) {
+        const userData = JSON.parse(localStorage.getItem(loggedInUser));
+        document.getElementById('user-avatar').src = userData.avatar || 'https://via.placeholder.com/32';
+        document.getElementById('user-name').textContent = loggedInUser;
+        userInfo.style.display = 'flex';
+        signupOption.style.display = 'none';
+        loginOption.style.display = 'none';
+        logoutOption.style.display = 'block';
+    } else if (user) {
         document.getElementById('user-avatar').src = user.avatar || 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png';
         document.getElementById('user-name').textContent = user.username;
         userInfo.style.display = 'flex';
@@ -320,6 +330,7 @@ function showLoginNotification() {
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const sidebar = document.querySelector('.sidebar');
+    const logo = document.querySelector('.sidebar-logo'); // Thêm chọn logo
 
     if (hamburger && sidebar) {
         hamburger.addEventListener('click', () => {
@@ -330,6 +341,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
                 sidebar.classList.remove('active');
             }
+        });
+    }
+
+    // Thêm sự kiện nhấp vào logo để chuyển về trang chủ
+    if (logo) {
+        logo.addEventListener('click', () => {
+            window.location.href = 'index.html';
         });
     }
 
@@ -344,7 +362,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
         });
 
-        // Thêm sự kiện cho mục Leaderboard trong sub-sidebar
         const leaderboardLink = document.querySelector('.leaderboard-text');
         if (leaderboardLink) {
             leaderboardLink.addEventListener('click', (e) => {
@@ -420,6 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('currentUser');
+            localStorage.removeItem('loggedInUser');
             updateSidebar();
             window.location.href = 'index.html';
         });
@@ -484,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadLeaderboard(category);
             });
         });
-        loadLeaderboard(currentCategory); // Tải bảng xếp hạng mặc định khi vào trang
+        loadLeaderboard(currentCategory);
     }
 
     if (prevBtn && nextBtn) {

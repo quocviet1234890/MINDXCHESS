@@ -1,3 +1,10 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #2f2f2f;
     font-family: 'Roboto', Arial, sans-serif;
@@ -6,14 +13,17 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #ffffff;
 }
 
+/* Wrapper cho toàn bộ layout */
 .wrapper {
     display: flex;
     flex: 1;
     flex-direction: row;
 }
 
+/* Hamburger button cho mobile */
 .hamburger {
     display: none;
     font-size: 24px;
@@ -28,6 +38,7 @@ body {
     z-index: 20;
 }
 
+/* Sidebar */
 .sidebar {
     width: 160px;
     height: 100vh;
@@ -143,7 +154,7 @@ body {
     display: none;
 }
 
-.play-option.active .sub-sidebar, .news-option.active .sub-sidebar, .language-option.active .sub-sidebar {
+.play-option.active .sub-sidebar, .news-option.active .sub-sidebar, .language-option.active .sub-sidebar, .search-results.active {
     display: block;
 }
 
@@ -176,7 +187,6 @@ body {
     border-radius: 8px;
 }
 
-/* Chỉnh sửa màu chữ của sub-sidebar Language thành trắng */
 .language-option .sub-sidebar .language-sub-text {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -242,6 +252,7 @@ body {
 .logout-btn { background-color: #ff4444; }
 .logout-btn:hover { background-color: #ff6666; }
 
+/* Main content */
 .main-content {
     flex: 1;
     display: flex;
@@ -251,16 +262,15 @@ body {
 
 .content {
     flex: 1;
-    padding: 40px 60px;
+    padding: 20px 40px;
     background-color: #2f2f2f;
-    color: #ffffff;
     margin-left: 160px;
     overflow-x: hidden;
     position: relative;
     z-index: 1;
 }
 
-/* Phần Leaderboard được chỉnh lại như cũ */
+/* Leaderboard */
 .leaderboard-container {
     display: flex;
     flex-direction: row;
@@ -447,69 +457,86 @@ h1 {
     color: #ffffff;
 }
 
-/* Các phần khác giữ nguyên */
+/* Profile */
 .profile-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    color: #ffffff;
+    background-color: #1e2a27;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .profile-header {
     display: flex;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 2px solid #baca44;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #baca44;
 }
 
 .profile-avatar {
-    margin-right: 30px;
+    flex-shrink: 0;
 }
 
 #player-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 12px;
-    border: 4px solid #baca44;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #baca44;
+    object-fit: cover;
 }
 
 .profile-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .username-title {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    gap: 10px;
 }
 
 #player-username {
-    font-size: 36px;
+    font-size: 28px;
     margin: 0;
     color: #ffffff;
+    font-weight: 700;
 }
 
 .player-title {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     color: #fff;
     background-color: #ff4444;
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin-left: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
 }
 
-.player-detail {
+.profile-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.detail-item {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    gap: 6px;
+    background: #2c3a36;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
     color: #d1d5db;
-    margin-bottom: 10px;
 }
 
 .detail-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    color: #baca44;
 }
 
 .profile-actions {
@@ -520,90 +547,72 @@ h1 {
 .action-btn {
     display: flex;
     align-items: center;
+    gap: 6px;
     background-color: #baca44;
     border: none;
     border-radius: 6px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: #1e2a27;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #d4de6a;
 }
 
 .action-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+    width: 16px;
+    height: 16px;
 }
 
 .profile-stats {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
-.stats-section {
-    background-color: #1e2a27;
-    padding: 40px;
-    border-radius: 12px;
-}
-
-.stats-section h2 {
-    font-size: 32px;
-    margin: 0 0 25px;
+.profile-stats h2 {
+    font-size: 22px;
     color: #ffffff;
+    margin: 0 0 15px 0;
+    font-weight: 700;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
 }
 
 .stat-item {
+    background: #2c3a36;
+    padding: 15px;
+    border-radius: 6px;
     text-align: center;
-    background: linear-gradient(135deg, #2c3a36, #3b4b46);
-    padding: 20px;
-    border-radius: 10px;
+    color: #ffffff;
 }
 
 .stat-label {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .stat-value {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     color: #f3c678;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .stat-record {
-    font-size: 16px;
+    font-size: 14px;
     color: #baca44;
-    font-weight: 500;
 }
 
-.profile-extra {
-    margin-top: 40px;
-    background-color: #1e2a27;
-    padding: 40px;
-    border-radius: 12px;
-}
-
-.profile-extra h2 {
-    font-size: 32px;
-    margin: 0 0 25px;
-    color: #ffffff;
-}
-
-#player-bio {
-    font-size: 16px;
-    color: #d1d5db;
-}
-
+/* Chat box */
 .chat-box {
     position: fixed;
     bottom: 0;
@@ -728,6 +737,7 @@ h1 {
     height: 20px;
 }
 
+/* Search results */
 .search-results {
     position: fixed;
     left: 160px;
@@ -782,87 +792,7 @@ h1 {
     border-radius: 4px;
 }
 
-.auth-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2f2f2f;
-}
-
-.auth-box {
-    width: 100%;
-    max-width: 400px;
-    background-color: #1e2a27;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-}
-
-.auth-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.auth-logo {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.auth-box h1 {
-    font-size: 28px;
-    color: #ffffff;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 16px;
-    color: #d1d5db;
-    margin-bottom: 8px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #2c3a36;
-    border: 1px solid #33403d;
-    border-radius: 6px;
-    outline: none;
-}
-
-.auth-btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: 700;
-    color: #1e2a27;
-    background-color: #baca44;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.auth-link {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #d1d5db;
-}
-
-.auth-link a {
-    color: #baca44;
-    text-decoration: none;
-}
-
-/* Footer giống 100% Chess.com */
+/* Footer */
 .footer {
     background-color: #212121;
     padding: 20px;
@@ -920,17 +850,189 @@ h1 {
     color: #b0bec5;
 }
 
+/* Authentication (Login/Signup) */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #2f2f2f 0%, #1e1e1e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(26, 140, 71, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+    z-index: 0;
+}
+
+.auth-box {
+    background: #3a3a3a;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.auth-logo:hover {
+    transform: scale(1.1);
+}
+
+.auth-box h1 {
+    font-size: 28px;
+    color: #fff;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #b0b0b0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-weight: 500;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    color: #1a8c47;
+    background: #3a3a3a;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #1a8c47;
+    box-shadow: 0 0 8px rgba(26, 140, 71, 0.5);
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    color: #1a8c47;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: #26c267;
+    text-decoration: underline;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #1a8c47 0%, #157b3a 100%);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(26, 140, 71, 0.4);
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, #26c267 0%, #1a8c47 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(26, 140, 71, 0.6);
+}
+
+.auth-link {
+    text-align: center;
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: #1a8c47;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.auth-link a:hover {
+    color: #26c267;
+    text-decoration: underline;
+}
+
+/* Notification */
 .notification {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #1e2a27;
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
+    color: #fff;
     z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+}
+
+.notification.success {
+    background: linear-gradient(135deg, #1a8c47 0%, #157b3a 100%);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
 }
 
 .notification-content {
@@ -939,11 +1041,11 @@ h1 {
 }
 
 .notification-icon {
-    font-size: 20px;
     margin-right: 10px;
-    color: #baca44;
+    font-size: 20px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     .hamburger {
         display: block;
@@ -984,19 +1086,29 @@ h1 {
         width: 100%;
     }
 
+    .profile-container {
+        margin: 0 10px;
+        padding: 15px;
+    }
+
     .profile-header {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .profile-avatar {
-        margin-right: 0;
-        margin-bottom: 20px;
+        gap: 15px;
     }
 
     #player-avatar {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    #player-username {
+        font-size: 24px;
+    }
+
+    .player-title {
+        font-size: 12px;
+        padding: 2px 6px;
     }
 
     .profile-actions {
@@ -1007,10 +1119,6 @@ h1 {
     .action-btn {
         width: 100%;
         justify-content: center;
-    }
-
-    .stats-section, .profile-extra {
-        padding: 20px;
     }
 
     .chat-box {
@@ -1029,6 +1137,11 @@ h1 {
         justify-content: center;
         flex-wrap: wrap;
     }
+
+    .auth-box {
+        max-width: 360px;
+        padding: 25px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1045,28 +1158,38 @@ h1 {
         padding: 10px;
     }
 
-    .auth-box {
-        padding: 15px;
-    }
-
-    .form-group input {
-        font-size: 14px;
-    }
-
-    .auth-btn {
-        font-size: 16px;
+    .profile-container {
+        padding: 10px;
     }
 
     #player-username {
-        font-size: 24px;
+        font-size: 20px;
     }
 
-    .stats-section h2, .profile-extra h2 {
-        font-size: 24px;
+    .detail-item {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .action-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .profile-stats h2 {
+        font-size: 18px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+        padding: 10px;
     }
 
     .stat-label {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .stat-value {
@@ -1079,5 +1202,33 @@ h1 {
 
     .footer-social-link {
         font-size: 14px;
+    }
+
+    .auth-box {
+        max-width: 300px;
+        padding: 20px;
+    }
+
+    .auth-box h1 {
+        font-size: 24px;
+    }
+
+    .auth-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .auth-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .auth-link {
+        font-size: 12px;
     }
 }

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINDX CHESS - Profile</title>
+    <title>Player Profile - Mindx.chess</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon_io.zip" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -15,10 +14,6 @@
         <div class="logo">
             <img src="img/img_pawn1.jpg" alt="Pawn icon" class="pawn-image">
             <span class="logo-text">Mindx.chess</span>
-        </div>
-        <div class="user-info" id="user-info" style="display: none;">
-            <img id="user-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="User Avatar" class="user-avatar">
-            <span id="user-name" class="user-name">Username</span>
         </div>
         <div class="play-option">
             <img src="img/img_pawn.jpg" alt="Play icon" class="hand-icon">
@@ -67,14 +62,18 @@
             </div>
             <div class="sub-sidebar search-results" id="search-results"></div>
         </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <img id="user-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="User Avatar" class="user-avatar">
+            <span id="user-name" class="user-name">Username</span>
+        </div>
+        <div class="logout-option" id="logout-option" style="display: none;">
+            <button class="logout-btn" data-i18n="log_out">Log Out</button>
+        </div>
         <div class="signup-option" id="signup-option">
             <button class="signup-btn" data-i18n="sign_up">Sign Up</button>
         </div>
         <div class="login-option" id="login-option">
             <button class="login-btn" data-i18n="log_in">Log In</button>
-        </div>
-        <div class="logout-option" id="logout-option" style="display: none;">
-            <button class="logout-btn" data-i18n="log_out">Log Out</button>
         </div>
         <div class="language-option">
             <img src="img/img_global.jpg" alt="Language icon" class="language-icon">
@@ -96,89 +95,66 @@
         </div>
         <div class="support-option">
             <img src="img/img_qusetion_mark.jpg" alt="Support icon" class="support-icon">
-            <span class="support-text" data-i18n="support">Support</span>
+            <a href="https://support.chess.com/" class="support-text" data-i18n="support">Support</a>
         </div>
     </div>
 
-    <div class="content">
-        <div class="profile-container">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <img id="player-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="Player Avatar">
+    <div class="main-content">
+        <div class="content">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img id="player-avatar" src="" alt="Player Avatar">
+                    </div>
+                    <div class="profile-info">
+                        <div class="username-title">
+                            <h1 id="player-username"></h1>
+                            <span id="player-title" class="player-title"></span>
+                        </div>
+                        <div class="profile-details">
+                            <div class="detail-item">
+                                <i class="fas fa-globe detail-icon"></i>
+                                <span id="player-location"></span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt detail-icon"></i>
+                                <span id="player-joined"></span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock detail-icon"></i>
+                                <span id="player-last-online"></span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users detail-icon"></i>
+                                <span id="player-followers"></span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-user-friends detail-icon"></i>
+                                <span id="player-following"></span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button id="add-friend-btn" class="action-btn">
+                                <i class="fas fa-user-plus action-icon"></i>
+                                <span data-i18n="add_friend">Add Friend</span>
+                            </button>
+                            <button id="message-btn" class="action-btn">
+                                <i class="fas fa-envelope action-icon"></i>
+                                <span data-i18n="message">Message</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="profile-info">
-                    <div class="username-title">
-                        <h1 id="player-username">Username</h1>
-                        <span id="player-title" class="player-title"></span>
-                    </div>
-                    <div class="player-detail">
-                        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon" class="detail-icon">
-                        <span id="player-location" data-i18n="location_na">N/A</span>
-                    </div>
-                    <div class="player-detail">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Last Online Icon" class="detail-icon">
-                        <span id="player-last-online" data-i18n="last_online_na">N/A</span>
-                    </div>
-                    <div class="player-detail">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3652/3652191.png" alt="Joined Icon" class="detail-icon">
-                        <span id="player-joined" data-i18n="joined_na">N/A</span>
-                    </div>
-                    <div class="player-detail">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Followers Icon" class="detail-icon">
-                        <span id="player-followers" data-i18n="followers_na">N/A</span>
-                    </div>
-                    <div class="player-detail">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1051/1051377.png" alt="Following Icon" class="detail-icon">
-                        <span id="player-following" data-i18n="following_na">N/A</span>
-                    </div>
-                    <div class="profile-actions">
-                        <button id="add-friend-btn" class="action-btn">
-                            <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Add Friend Icon" class="action-icon">
-                            <span data-i18n="add_friend">Add Friend</span>
-                        </button>
-                        <button id="message-btn" class="action-btn">
-                            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Message Icon" class="action-icon">
-                            <span data-i18n="message">Message</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-stats">
-                <div class="stats-section">
+                <div class="profile-stats">
                     <h2 data-i18n="stats">Stats</h2>
-                    <div class="stats-grid" id="stats-grid"></div>
-                </div>
-            </div>
-            <div class="profile-extra">
-                <h2>Bio</h2>
-                <p id="player-bio">This player has not provided a bio yet.</p>
-            </div>
-        </div>
-        <div class="chat-box" id="chat-box" style="display: none;">
-            <div class="chat-header">
-                <img id="chat-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="Chat Avatar" class="chat-avatar">
-                <div class="chat-user-info">
-                    <span id="chat-username">Username</span>
-                    <span id="chat-last-online" class="chat-last-online"></span>
-                    <span id="chat-status" class="status-dot"></span>
-                </div>
-                <button id="minimize-chat" class="chat-action-btn minimize-chat">-</button>
-                <button id="close-chat" class="chat-action-btn">×</button>
-            </div>
-            <div class="chat-messages" id="chat-messages"></div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." data-i18n-placeholder="type_message">
-                <div class="chat-actions">
-                    <button id="send-message-btn" class="chat-action-btn">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Send Icon" class="chat-icon">
-                    </button>
+                    <div id="stats-grid" class="stats-grid"></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="main.js"></script>
     <script src="profile.js"></script>
-    <script src="search.js"></script>
 </body>
 </html>

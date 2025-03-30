@@ -4,36 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MINDX CHESS - Sign Up</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon_io.zip" type="image/x-icon">
+    <link rel="stylesheet" href="./styles.css"> <!-- Đảm bảo đường dẫn đúng đến file CSS -->
+    <link rel="icon" href="img/favicon_io.ico" type="image/x-icon"> <!-- Đảm bảo đường dẫn favicon đúng -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-box">
             <div class="auth-header">
-                <img src="img/img_pawn1.jpg" alt="Pawn icon" class="auth-logo">
+                <img src="img/img_pawn1.jpg" alt="Pawn icon" class="auth-logo"> <!-- Đảm bảo đường dẫn hình ảnh đúng -->
                 <h1 data-i18n="signup_title">Create Your Account</h1>
             </div>
             <form id="signup-form">
                 <div class="form-group">
+                    <input type="text" id="signup-username" placeholder=" " required>
                     <label for="signup-username" data-i18n="username">Username</label>
-                    <input type="text" id="signup-username" placeholder="Choose a username" data-i18n-placeholder="choose_username" required>
                 </div>
                 <div class="form-group">
+                    <input type="email" id="signup-email" placeholder=" " required>
                     <label for="signup-email" data-i18n="email">Email</label>
-                    <input type="email" id="signup-email" placeholder="Enter your email" data-i18n-placeholder="enter_email" required>
                 </div>
                 <div class="form-group">
+                    <input type="password" id="signup-password" placeholder=" " required>
                     <label for="signup-password" data-i18n="password">Password</label>
-                    <input type="password" id="signup-password" placeholder="Create a password" data-i18n-placeholder="create_password" required>
                 </div>
                 <button type="submit" class="auth-btn" data-i18n="sign_up">Sign Up</button>
                 <p class="auth-link" data-i18n="already_have_account">Already have an account? <a href="login.html" data-i18n="log_in">Log In</a></p>
             </form>
         </div>
     </div>
-    <script src="main.js"></script>
+    <div class="notification" id="signup-error" style="display: none;">
+        <div class="notification-content error">
+            <span class="notification-icon">✖</span>
+            <p id="signup-error-message"></p>
+        </div>
+    </div>
+    <div class="notification" id="signup-success" style="display: none;">
+        <div class="notification-content success">
+            <span class="notification-icon">✔</span>
+            <p>Account created successfully! Redirecting to login...</p>
+        </div>
+    </div>
+    <script src="./signup.js"></script> <!-- Đảm bảo đường dẫn đến script signup.js chính xác -->
 </body>
 </html>
