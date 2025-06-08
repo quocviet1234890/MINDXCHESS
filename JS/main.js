@@ -21,7 +21,6 @@ const translations = {
         password: "Password",
         enter_password: "Enter password",
         forgot_password: "Forgot password?",
-        new_to_mindx_chess: "New to Mindx Chess? <a href='signup.html' data-i18n='sign_up'>Sign Up</a>",
         logged_in_success: "Logged in successfully!",
         signup_title: "Create Your Account",
         username: "Username",
@@ -53,7 +52,6 @@ const translations = {
         password: "Mật khẩu",
         enter_password: "Nhập mật khẩu",
         forgot_password: "Quên mật khẩu?",
-        new_to_mindx_chess: "Mới tham gia Mindx Chess? <a href='signup.html' data-i18n='sign_up'>Đăng ký</a>",
         logged_in_success: "Đăng nhập thành công!",
         signup_title: "Tạo tài khoản của bạn",
         username: "Tên người dùng",
@@ -85,7 +83,6 @@ const translations = {
         password: "Contraseña",
         enter_password: "Ingresa contraseña",
         forgot_password: "¿Olvidaste tu contraseña?",
-        new_to_mindx_chess: "¿Nuevo en Mindx Chess? <a href='signup.html' data-i18n='sign_up'>Registrarse</a>",
         logged_in_success: "¡Sesión iniciada con éxito!",
         signup_title: "Crea Tu Cuenta",
         username: "Nombre de usuario",
@@ -117,7 +114,6 @@ const translations = {
         password: "Mot de passe",
         enter_password: "Entrez mot de passe",
         forgot_password: "Mot de passe oublié ?",
-        new_to_mindx_chess: "Nouveau sur Mindx Chess ? <a href='signup.html' data-i18n='sign_up'>S'inscrire</a>",
         logged_in_success: "Connexion réussie !",
         signup_title: "Créez Votre Compte",
         username: "Nom d'utilisateur",
@@ -379,14 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (languageOption) languageOption.classList.remove('active');
             e.stopPropagation();
         });
-
-        const topPlayersLink = document.querySelector('.top-players-text');
-        if (topPlayersLink) {
-            topPlayersLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = topPlayersLink.getAttribute('href');
-            });
-        }
     }
 
     if (languageOption) {
@@ -421,77 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (languageOption) languageOption.classList.remove('active');
         }
     });
-
-    if (signupBtn) {
-        signupBtn.addEventListener('click', () => {
-            window.location.href = 'signup.html';
-        });
-    }
-
-    if (loginBtn) {
-        loginBtn.addEventListener('click', () => {
-            window.location.href = 'login.html';
-        });
-    }
-
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('currentUser');
-            localStorage.removeItem('loggedInUser');
-            updateSidebar();
-            window.location.href = 'index.html';
-        });
-    }
-
     updateSidebar();
-
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
-
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = users.find(u => (u.username === username || u.email === username) && u.password === password);
-
-            if (user) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                showLoginNotification();
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1000);
-            } else {
-                alert('Invalid username/email or password');
-            }
-        });
-    }
-
-    const signupForm = document.getElementById('signup-form');
-    if (signupForm) {
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('signup-username').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            if (users.some(u => u.username === username)) {
-                alert('Username already exists');
-                return;
-            }
-            if (users.some(u => u.email === email)) {
-                alert('Email already registered');
-                return;
-            }
-
-            const newUser = { username, email, password, avatar: 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png' };
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
-            window.location.href = 'index.html';
-        });
-    }
 
     if (categoryItems.length > 0) {
         categoryItems.forEach(item => {
