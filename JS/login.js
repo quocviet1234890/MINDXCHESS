@@ -1,30 +1,39 @@
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { auth } from "./firebase-config.js";
+document.getElementById('login-form').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-const form = document.getElementById("login-form");
-const errorNotification = document.getElementById("login-error");
-const successNotification = document.getElementById("login-notification");
+  const emailOrUsername = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value;
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if (!emailOrUsername || !password) {
+    showError('Vui lòng nhập đầy đủ thông tin!');
+    return;
+  }
 
-    const email = document.getElementById("login-username").value;
-    const password = document.getElementById("login-password").value;
-
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log("Đăng nhập thành công:", user.email);
-
-            successNotification.style.display = "block";
-            errorNotification.style.display = "none";
-
-            window.location.href = "index.html";
-        })
-        .catch((error) => {
-            console.error("Lỗi đăng nhập:", error.message);
-
-            successNotification.style.display = "none";
-            errorNotification.style.display = "block";
-        });
+  auth.signInWithEmailAndPassword(emailOrUsername, password)
+    .then(userCredential => {
+      showSuccess();
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    })
+    .catch(error => {
+      showError(error.message || 'Đăng nhập thất bại!');
+    });
 });
+
+function showError(message) {
+  const errorBox = document.getElementById('login-error');
+  errorBox.style.display = 'block';
+  errorBox.querySelector('p').textContent = message;
+
+  const successBox = document.getElementById('login-notification');
+  successBox.style.display = 'none';
+}
+
+function showSuccess() {
+  const successBox = document.getElementById('login-notification');
+  successBox.style.display = 'block';
+
+  const errorBox = document.getElementById('login-error');
+  errorBox.style.display = 'none';
+}

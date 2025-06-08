@@ -28,7 +28,7 @@
                     <input type="password" id="signup-password" placeholder=" " required>
                     <label for="signup-password" data-i18n="password">Password</label>
                 </div>
-                <button type="submit" class="auth-btn" data-i18n="sign_up">Sign Up</button>
+                <button id="signup-btn" type="button" class="auth-btn" data-i18n="sign_up">Sign Up</button>
                 <p class="auth-link" data-i18n="already_have_account">Already have an account? <a href="login.html" data-i18n="log_in">Log In</a></p>
             </form>
         </div>
@@ -45,6 +45,8 @@
             <p>Account created successfully! Redirecting to login...</p>
         </div>
     </div>
-    <script src="/JS/signup.js"></script> <!-- Đảm bảo đường dẫn đến script signup.js chính xác -->
+    <script src="/JS/signup.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-compat.js"></script>
+    <script src="/JS/firebase-cofig.js"></script>
 </body>
 </html>
