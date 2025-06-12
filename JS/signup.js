@@ -21,7 +21,7 @@ document.getElementById('signup-btn').addEventListener('click', function () {
       document.getElementById('signup-error').style.display = 'none';
       
       setTimeout(() => {
-        window.location.href = 'login.html';
+        window.location.href = './login.html';
       }, 2000);
     })
     .catch((error) => {

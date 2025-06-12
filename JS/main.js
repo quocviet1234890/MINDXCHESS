@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Thêm sự kiện nhấp vào logo để chuyển về trang chủ
     if (logo) {
         logo.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            window.location.href = './index.html';
         });
     }
 

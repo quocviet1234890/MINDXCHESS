@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addFriendBtn.addEventListener('click', () => {
         if (!loggedInUser) {
             alert('Please log in to add friends!');
-            window.location.href = 'login.html';
+            window.location.href = './login.html';
             return;
         }
         if (loggedInUser === username) {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     messageBtn.addEventListener('click', () => {
         if (!loggedInUser) {
             alert('Please log in to send messages!');
-            window.location.href = 'login.html';
+            window.location.href = './login.html';
             return;
         }
 

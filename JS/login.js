@@ -13,7 +13,7 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     .then(userCredential => {
       showSuccess();
       setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = './index.html';
       }, 1500);
     })
     .catch(error => {
