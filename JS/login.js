@@ -1,4 +1,4 @@
-document.getElementById('login-form').addEventListener('submit', function(e) {
+document.getElementById('login-btn').addEventListener('click', function(e) {
   e.preventDefault();
 
   const emailOrUsername = document.getElementById('login-username').value.trim();
@@ -13,8 +13,9 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     .then(userCredential => {
       showSuccess();
       setTimeout(() => {
-        window.location.href = './index.html';
+      window.location.href = './index.html';
       }, 1500);
+
     })
     .catch(error => {
       showError(error.message || 'Đăng nhập thất bại!');

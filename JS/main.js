@@ -156,7 +156,17 @@ const pageInfo = document.getElementById('page-info');
 const playOption = document.querySelector('.play-option');
 const newsOption = document.querySelector('.news-option');
 const signupBtn = document.querySelector('.signup-btn');
-const loginBtn = document.querySelector('.login-btn');
+const loginBtn = document.querySelector('.login-btn')
+
+loginBtn.addEventListener('click', function(e)  { 
+    window.location.href = './login.html';
+});
+
+signupBtn.addEventListener('click', function(e) { 
+    window.location.href = './signup.html';
+
+})
+
 const logoutBtn = document.querySelector('.logout-btn');
 const userInfo = document.getElementById('user-info');
 const logoutOption = document.getElementById('logout-option');
