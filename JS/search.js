@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const searchResults = document.getElementById('search-results');
-    const logo = document.querySelector('.sidebar-logo'); // Thêm chọn logo
+    const logo = document.querySelector('.sidebar-logo');
 
     async function searchPlayers(query) {
         try {
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Thêm sự kiện nhấp vào logo để chuyển về trang chủ
     if (logo) {
         logo.addEventListener('click', () => {
             window.location.href = './index.html';
