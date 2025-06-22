@@ -16,10 +16,6 @@
             <img src="./img/img_pawn1.jpg" alt="Pawn icon" class="pawn-image">
             <span class="logo-text">Mindx.chess</span>
         </div>
-        <div class="user-info" id="user-info" style="display: none;">
-            <img id="user-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="User Avatar" class="user-avatar">
-            <span id="user-name" class="user-name">Username</span>
-        </div>
         <div class="play-option">
             <img src="./img/img_pawn.jpg" alt="Play icon" class="hand-icon">
             <span class="play-text" data-i18n="play">Play</span>
@@ -60,6 +56,13 @@
             <img src="./img/img_more.jpg" alt="More icon" class="more-icon">
             <span class="more-text" data-i18n="more">More</span>
         </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <img id="user-avatar" src="https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png" alt="User Avatar" class="user-avatar">
+            <span id="user-name" class="user-name">Username</span>
+        </div>
+        <div class="logout-option" id="logout-option" style="display: none;">
+            <button class="logout-btn" data-i18n="log_out">Log Out</button>
+        </div>
         <div class="search-option">
             <div class="search-container">
                 <img src="./img/img_search.jpg" alt="Search Icon" class="search-icon">
@@ -72,9 +75,6 @@
         </div>
         <div class="login-option" id="login-option">
             <button class="login-btn" data-i18n="log_in">Log In</button>
-        </div>
-        <div class="logout-option" id="logout-option" style="display: none;">
-            <button class="logout-btn" data-i18n="log_out">Log Out</button>
         </div>
         <div class="language-option">
             <img src="./img/img_global.jpg" alt="Language icon" class="language-icon">
@@ -93,7 +93,6 @@
             <a href="https://support.chess.com/" class="support-text" data-i18n="support">Support</a>
         </div>
     </div>
-
     <div class="content">
         <div class="leaderboard-container">
             <div class="leaderboard-sidebar">
@@ -159,7 +158,8 @@
             </div>
         </div>
     </div>
-
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-compat.js"></script>
+    <script src="./js/firebase-config.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

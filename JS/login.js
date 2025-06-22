@@ -15,7 +15,6 @@ document.getElementById('login-btn').addEventListener('click', function(e) {
       setTimeout(() => {
       window.location.href = './index.html';
       }, 1500);
-
     })
     .catch(error => {
       showError(error.message || 'Đăng nhập thất bại!');
