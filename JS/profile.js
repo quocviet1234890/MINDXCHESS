@@ -12,11 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loggedInUser = localStorage.getItem('loggedInUser');
     const friendRequests = JSON.parse(localStorage.getItem('friendRequests')) || {};
 
-    // Hàm định dạng thời gian
     const formatTimestamp = (timestamp) => timestamp ? new Date(timestamp).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' }) : 'N/A';
     const formatDate = (timestamp) => timestamp ? new Date(timestamp * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A';
 
-    // Lấy thông tin người chơi từ Chess.com API
     fetch(`https://api.chess.com/pub/player/${username}`)
         .then(response => {
             if (!response.ok) throw new Error(`Player not found (Status: ${response.status})`);
@@ -70,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('stats-grid').innerHTML = '<div class="stat-item">No stats available</div>';
         });
 
-    // Xử lý nút "Add Friend"
     const addFriendBtn = document.getElementById('add-friend-btn');
     const addFriendText = addFriendBtn.querySelector('span');
     if (loggedInUser && friendRequests[loggedInUser]?.includes(username)) {
@@ -100,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Xử lý nút "Message" với chat giống Facebook
     const messageBtn = document.getElementById('message-btn');
     messageBtn.addEventListener('click', () => {
         if (!loggedInUser) {
@@ -140,15 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const emojiBtn = chatBox.querySelector('.emoji-btn');
         const emojiPicker = chatBox.querySelector('.emoji-picker');
 
-        // Đóng chat
         closeChat.addEventListener('click', () => chatBox.remove());
 
-        // Mở/đóng emoji picker
         emojiBtn.addEventListener('click', () => {
             emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'flex' : 'none';
         });
 
-        // Chọn emoji
         emojiPicker.querySelectorAll('.emoji').forEach(emoji => {
             emoji.addEventListener('click', () => {
                 messageInput.value += emoji.dataset.emoji;
@@ -156,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Gửi tin nhắn
         function sendMessage() {
             const message = messageInput.value.trim();
             if (!message) return;
@@ -175,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sendMessageBtn.addEventListener('click', sendMessage);
         messageInput.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
 
-        // Hiển thị tin nhắn
         function appendMessage(text, msgId, type) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', type);
@@ -190,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Thu hồi tin nhắn
             messageDiv.querySelector('.recall-btn').addEventListener('click', () => {
                 const messages = JSON.parse(localStorage.getItem('messages')) || {};
                 const chatId = `${loggedInUser}-${username}`;
@@ -200,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Tải tin nhắn cũ
         const messages = JSON.parse(localStorage.getItem('messages')) || {};
         const chatId = `${loggedInUser}-${username}`;
         if (messages[chatId]) {
