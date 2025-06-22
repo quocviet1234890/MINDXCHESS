@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('player-avatar').src = 'https://www.chess.com/bundles/web/images/noavatar_l.84a92436.png';
         });
 
-    // Lấy thống kê người chơi
     fetch(`https://api.chess.com/pub/player/${username}/stats`)
         .then(response => {
             if (!response.ok) throw new Error(`Stats not found (Status: ${response.status})`);
